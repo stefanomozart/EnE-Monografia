@@ -7,7 +7,7 @@
 
 \def\@departamento{Departamento de Engenharia El\'etrica}
 \def\@faculdade{Faculdade de Tecnologia}
-\def\@universidade{Universidade de Bras\'{\i}lia}
+\def\@universidade{Universidade de Bras\'ilia}
 \def\@siglauni{UnB}
 \def\@cidade{Bras\'ilia}
 \def\@uf{DF}
@@ -63,10 +63,10 @@
 \DeclareOptionX{ppgee}{%
 					\gdef\@nomeDoPrograma{Engenharia El\'etrica}}%
 
-\DeclareOptionX{pgea}{\@ppcatrue%
-					\gdef\@nomeDoPrograma{Engenharia de Sistemas Eletr\^onicos e de Automa\cc\~ao}%
+\DeclareOptionX{pgea}{%
+					\gdef\@nomeDoPrograma{Engenharia de Sistemas Eletr\^onicos e de Automa\c{c}\~ao}}%
 
-\newif\if@ppee\@ppcafalse%
+\newif\if@ppee\@ppeefalse%
 \DeclareOptionX{ppee}{\@ppeetrue%
 					\gdef\@nomeDoPrograma{Engenharia El\'etrica}%
 					\gdef\@nomecurso{Mestrado Profissional}}%
