@@ -1,6 +1,6 @@
 # EnE-Monografia #
 
-Proposta de padrão de formatação de documentos acadêmicos para o [Departamento de Engenharia Elétrica](https://www.ene.unb.br) da [Universidade de Brasília](https://www.unb.br). Este modelo se baseia no modelo [UnB-CIC](https://github.com/UnB-CIC/Monografia), criado pelo Prof. Guilherme N. Ramos, para o Departamento de Ciência da Computação, IE-UnB.
+Proposta de padrão de formatação de documentos acadêmicos para o [Departamento de Engenharia Elétrica](https://www.ene.unb.br) da [Universidade de Brasília](https://www.unb.br). Este modelo se baseia no [UnB-CIC](https://github.com/UnB-CIC/Monografia), criado pelo Prof. Guilherme N. Ramos, para o Departamento de Ciência da Computação, IE-UnB.
 
 
 ## Licença ##
