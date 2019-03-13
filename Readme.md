@@ -1,6 +1,6 @@
-# UnB-CIC #
+# EnE-Monografia #
 
-Modelo padrão de formatação de documentos acadêmicos do [Departamento de Ciência da Computação](https://www.cic.unb.br) da [Universidade de Brasília](https://www.unb.br). Este modelo existe para **padronizar** a formatação dos documentos, portanto **evite** modificar a classe ou usar configurações/pacotes diferentes dos definidos.
+Proposta de padrão de formatação de documentos acadêmicos para o [Departamento de Engenharia Elétrica](https://www.ene.unb.br) da [Universidade de Brasília](https://www.unb.br). Este modelo se baseia no modelo [UnB-CIC](https://github.com/UnB-CIC/Monografia), criado pelo Prof. Guilherme N. Ramos, para o Departamento de Ciência da Computação, IE-UnB.
 
 
 ## Licença ##
@@ -12,7 +12,7 @@ Esta obra está licenciado com uma Licença [Creative Commons Atribuição-Compa
 
 ## Instalação ##
 
-Assume-se que há uma instalação correta do [TeX Live](https://www.tug.org/texlive/). Para qualquer dos sistemas operacionais mais comuns (Unix/Mac OS/Windows), basta copiar todos os arquivos disponíveis. A forma mais simples de fazer isso é baixar o arquivo [ZIP](https://github.com/UnB-CIC/Monografia/archive/master.zip) e descompactá-lo em sua área de trabalho.
+Assume-se que há uma instalação correta do [TeX Live](https://www.tug.org/texlive/). Para qualquer dos sistemas operacionais mais comuns (Unix/Mac OS/Windows), basta copiar todos os arquivos disponíveis. A forma mais simples de fazer isso é baixar o arquivo [ZIP](https://github.com/stefanomozart/EnE-Monografia/archive/master.zip) e descompactá-lo em sua área de trabalho.
 
 
 ## Uso ##
@@ -64,7 +64,7 @@ Uma solução popular ultimamente tem sido usar uma ferramenta online como o [Sh
 
 Caso queira usar o seu próprio sistema, veja cuidadosamente as seções de instalação e uso acima. Se a sua configuração está conforme e ainda assim não funciona, geralmente há algum tipo de mensagem descrevendo o problema; tente buscar soluções no [Google](https://www.google.com) ou em sítios especializados como o [StackExchange](http://tex.stackexchange.com).
 
-Se isso não funcionar, pode tentar gerar um [novo _issue_](https://github.com/UnB-CIC/Monografia/issues/new) no projeto, que **será analisado quando possível**. Providencie informações para a análise/investigação (veja [isso](http://wiki.python.org.br/ComoFazerPerguntasInteligentes) e esses [aqui](http://meta.tex.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-example-what-is-that) e [ali](http://meta.tex.stackexchange.com/a/3301)).
+Se isso não funcionar, pode tentar gerar um [novo _issue_](https://github.com/stefanomozart/EnE-Monografia/issues/new) no projeto, que **será analisado quando possível**. Providencie informações para a análise/investigação (veja [isso](http://wiki.python.org.br/ComoFazerPerguntasInteligentes) e esses [aqui](http://meta.tex.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-example-what-is-that) e [ali](http://meta.tex.stackexchange.com/a/3301)).
 
 
 ### Os autores são listados incorretamente nas referências! ###
