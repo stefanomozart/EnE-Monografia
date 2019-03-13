@@ -1,12 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
-\ProvidesClass{UnB-CIC}[2014/07/10 Classe para trabalhos CIC UnB]
+\ProvidesClass{UnB-EnE}[2014/07/10 Classe para trabalhos do Departamento de Eng. El. FT/UnB]
 
 %%
 %% --- Contextualização do departamento ---
 %%
 
-\def\@departamento{Departamento de Ci\^{e}ncia da Computa\c{c}\~{a}o}
-\def\@instituto{Instituto de Ci\^{e}ncias Exatas}
+\def\@departamento{Departamento de Engenharia El\'etrica}
+\def\@faculdade{Faculdade de Tecnologia}
 \def\@universidade{Universidade de Bras\'{\i}lia}
 \def\@siglauni{UnB}
 \def\@cidade{Bras\'ilia}
@@ -30,16 +30,20 @@
 
 %opções de curso
 \newif\if@posgraduacao\@posgraduacaofalse%
-\DeclareOptionX{bacharelado}{%
-    \gdef\@nomecurso{Bacharelado em Ci\^encia da Computa\c{c}\~ao}%
+\DeclareOptionX{eletrica}{%
+    \gdef\@nomecurso{Bacharelado em Engenharia El\'etrica}%
     \gdef\@mododeescrita{Monografia}}%
 
-\DeclareOptionX{licenciatura}{%
-    \gdef\@nomecurso{Curso de Computa\c{c}\~ao --- Licenciatura}%
+\DeclareOptionX{redes}{%
+    \gdef\@nomecurso{Bacharelado em Engenharia de Redes de Comunica\c{c}\~oes}%
     \gdef\@mododeescrita{Monografia}}%
 
-\DeclareOptionX{engenharia}{%
-    \gdef\@nomecurso{Curso de Engenharia da Computa\c{c}\~ao}%
+\DeclareOptionX{mecatronica}{%
+    \gdef\@nomecurso{Bacharelado em Engenharia Mecatr\^onica}%
+    \gdef\@mododeescrita{Monografia}}%
+
+\DeclareOptionX{computacao}{%
+    \gdef\@nomecurso{Bacharelado em Engenharia de Computa\c{c}\~ao}%
     \gdef\@mododeescrita{Monografia}}%
 
 
@@ -56,12 +60,15 @@
     \gdef\@assunto{Tese de Doutorado}%
     \gdef\@mododeescrita{Tese}}%
 
-\DeclareOptionX{ppginf}{%
-					\gdef\@nomeDoPrograma{Inform\'{a}tica}}%
+\DeclareOptionX{ppgee}{%
+					\gdef\@nomeDoPrograma{Engenharia El\'etrica}}%
 
-\newif\if@ppca\@ppcafalse%
-\DeclareOptionX{ppca}{\@ppcatrue%
-					\gdef\@nomeDoPrograma{Computa\c{c}\~{a}o Aplicada}%
+\DeclareOptionX{pgea}{\@ppcatrue%
+					\gdef\@nomeDoPrograma{Engenharia de Sistemas Eletr\^onicos e de Automa\cc\~ao}%
+
+\newif\if@ppee\@ppcafalse%
+\DeclareOptionX{ppee}{\@ppeetrue%
+					\gdef\@nomeDoPrograma{Engenharia El\'etrica}%
 					\gdef\@nomecurso{Mestrado Profissional}}%
 
 \newif\if@qualificacao\@qualificacaofalse%
@@ -77,7 +84,7 @@
 	\else%
 		\ifx\@tempa\@tempc\@LoadHyperreffalse%
 		\else
-			\ClassError{UnB-CIC}
+			\ClassError{UnB-EnE}
 				{Valor invalido para opcao hyperref: #1}
 				{Valores validos: hyperref,hyperref=load,hyperref=config}
 		\fi
@@ -136,8 +143,6 @@
 %%
 %% --- Pacotes requeridos ---
 %%
-
-
 \RequirePackage[brazil,american]{babel}% Idiomas
 \RequirePackage[fixlanguage]{babelbib}%  Idioma das referências
 \RequirePackage[utf8]{inputenc}%         Arquivos na codificação UTF-8
@@ -193,7 +198,7 @@
 }
 
 \newcommand{\chapteralign}{%alinhamento de título de capítulos
-	\ClassError{UnB-CIC}
+	\ClassError{UnB-EnE}
 			{Comando \protect\pretextual\space nao foi chamado}
 			{Nao pode haver titulos antes do comando \protect\pretextual}
 }
@@ -372,7 +377,7 @@
 		\addtolength{\len@brasiliaw}{-.105em}%ajusta pequeno espaço em branco antes do B desta fonte
 		\includegraphics[width=\len@brasiliaw]{#1}\\[.63\len@uacaph]%logo com a largura da palavra Brasilia
 		\@universidade\@lskipoffset{.5}%
-		\@textscale{.5}{\@instituto}\@lskipoffset{.25}%
+		\@textscale{.5}{\@faculdade}\@lskipoffset{.25}%
 		\@textscale{.5}{\@departamento}%
 		\end{spacing}%
 	\endgroup
