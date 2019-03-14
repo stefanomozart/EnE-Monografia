@@ -615,7 +615,7 @@
 			{\large\@author}\vfill%
 			\@mododeescrita\ %
 			\if@posgraduacao%
-				\if@ppca%
+				\if@ppee%
 					apresentada como requisito parcial para %
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do\\%
 				\else%
@@ -649,7 +649,7 @@
 			{\large\@author}\vfill%
 			\@mododeescrita\ %
 			\if@posgraduacao%
-				\if@ppca%
+				\if@ppee%
 					apresentada como requisito parcial para %
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do\\%
 				\else%
@@ -839,17 +839,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\titulo}[1]{\title{#1}}%
 
-\def\@texpath{tex}%
 \newcommand{\@erroSeNaoExiste}[1]{%
-    \IfFileExists{#1}{}%
-	    {\ClassError{UnB-CIC}%
-	        {Arquivo "#1" nao encontrado.}
-	        {O arquivo "#1" eh necessário.}}%
+	\IfFileExists{#1}{}%
+		{\ClassError{UnB-CIC}%
+		{Arquivo "#1" nao encontrado.}
+		{O arquivo "#1" eh necessário.}}%
 }%
 
 \newcommand{\@inputTeXFile}[1]{%
-	\@erroSeNaoExiste{\@texpath/#1}%
-	\input{\@texpath/#1}%
+	\@erroSeNaoExiste{#1}%
+	\input{#1}%
 }%
 \newcommand{\@IncluirSecao}[1]{%
 	\begin{#1}%
