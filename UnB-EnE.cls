@@ -1,10 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
 \ProvidesClass{UnB-EnE}[2014/07/10 Classe para trabalhos do Departamento de Eng. El. FT/UnB]
 
-%%
-%% --- Contextualização do departamento ---
-%%
-
+%% ------------------------------------------------------------------------------------------
+%% -- Contextualização do departamento 
+%% ------------------------------------------------------------------------------------------
 \def\@departamento{Departamento de Engenharia El\'etrica}
 \def\@faculdade{Faculdade de Tecnologia}
 \def\@universidade{Universidade de Bras\'ilia}
@@ -14,193 +13,209 @@
 \def\@cidadeuf{\@cidade--\@uf}
 \def\@pais{Brasil}
 
-%%
-%% --- Definição de opções ---
-%%
+%% ------------------------------------------------------------------------------------------
+%% -- Definição de opções 
+%% ------------------------------------------------------------------------------------------
 \RequirePackage{xkeyval}
 
-%espaçamento de linhas
+% -- Espaçamento de linhas
 \newif\if@singlespacing
 \newif\if@onehalfspacing
 \newif\if@baselineskip
-\DeclareOptionX{singlespacing}{\@singlespacingtrue \@onehalfspacingfalse}
-\DeclareOptionX{onehalfspacing}{\@onehalfspacingtrue \@singlespacingfalse}
-\DeclareOptionX{doublespacing}{\@singlespacingfalse \@onehalfspacingfalse}%\else
-\DeclareOptionX{baselineskip}{\@baselineskiptrue}
+\DeclareOptionX{singlespacing}{\@singlespacingtrue \@onehalfspacingfalse}%
+\DeclareOptionX{onehalfspacing}{\@onehalfspacingtrue \@singlespacingfalse}%
+\DeclareOptionX{doublespacing}{\@singlespacingfalse \@onehalfspacingfalse}%
+\DeclareOptionX{baselineskip}{\@baselineskiptrue}%
 
-%opções de curso
+% -- Opções de curso/programa
 \newif\if@posgraduacao\@posgraduacaofalse%
 \DeclareOptionX{eletrica}{%
     \gdef\@nomecurso{Bacharelado em Engenharia El\'etrica}%
-    \gdef\@mododeescrita{Monografia}}%
+    \gdef\@mododeescrita{Monografia}%
+}%
 
 \DeclareOptionX{redes}{%
     \gdef\@nomecurso{Bacharelado em Engenharia de Redes de Comunica\c{c}\~oes}%
-    \gdef\@mododeescrita{Monografia}}%
+    \gdef\@mododeescrita{Monografia}%
+}%
 
 \DeclareOptionX{mecatronica}{%
     \gdef\@nomecurso{Bacharelado em Engenharia Mecatr\^onica}%
-    \gdef\@mododeescrita{Monografia}}%
+    \gdef\@mododeescrita{Monografia}%
+}%
 
 \DeclareOptionX{computacao}{%
     \gdef\@nomecurso{Bacharelado em Engenharia de Computa\c{c}\~ao}%
-    \gdef\@mododeescrita{Monografia}}%
-
+    \gdef\@mododeescrita{Monografia}%
+}%
 
 \def\@nomecurso{\@empty}%
 \def\@assunto{Monografia (\@ifundefined{XeTeXversion}{Gradua\c{c}\~ao}{Graduação})}
-\DeclareOptionX{mestrado}{\@posgraduacaotrue%
+\DeclareOptionX{mestrado}{
+	\@posgraduacaotrue%
     \gdef\@nomecurso{Mestrado}%
     \gdef\@assunto{Disserta\c{c}\~ao (Mestrado)}%
-    \gdef\@mododeescrita{Disserta\c{c}\~ao}}%
+    \gdef\@mododeescrita{Disserta\c{c}\~ao}%
+}%
 
 \newif\if@doutorado\@doutoradofalse%
-\DeclareOptionX{doutorado}{\@posgraduacaotrue\@doutoradotrue%
+\DeclareOptionX{doutorado}{%
+	\@posgraduacaotrue
+	\@doutoradotrue%
     \gdef\@nomecurso{Doutorado}%
     \gdef\@assunto{Tese de Doutorado}%
-    \gdef\@mododeescrita{Tese}}%
+    \gdef\@mododeescrita{Tese}
+}%
 
 \DeclareOptionX{ppgee}{%
-					\gdef\@nomeDoPrograma{Engenharia El\'etrica}}%
+	\gdef\@nomeDoPrograma{Engenharia El\'etrica}%
+}%
 
 \DeclareOptionX{pgea}{%
-					\gdef\@nomeDoPrograma{Engenharia de Sistemas Eletr\^onicos e de Automa\c{c}\~ao}}%
+	\gdef\@nomeDoPrograma{Engenharia de Sistemas Eletr\^onicos e de Automa\c{c}\~ao}%
+}%
 
 \newif\if@ppee\@ppeefalse%
-\DeclareOptionX{ppee}{\@ppeetrue%
-					\gdef\@nomeDoPrograma{Engenharia El\'etrica}%
-					\gdef\@nomecurso{Mestrado Profissional}}%
+\DeclareOptionX{ppee}{%
+	\@ppeetrue%
+	\gdef\@nomeDoPrograma{Engenharia El\'etrica}%
+	\gdef\@nomecurso{Mestrado Profissional}%
+}%
 
 \newif\if@qualificacao\@qualificacaofalse%
 \DeclareOptionX{qualificacao}{\@qualificacaotrue}%
 
-%modo de geração do PDF
-\newif\if@ForScreenView
-\newif\if@LoadHyperref
-\DeclareOptionX{impressao}{\@ForScreenViewfalse\@LoadHyperreffalse}
+% -- Modo de geração do PDF
+\newif\if@ForScreenView%
+\newif\if@LoadHyperref%
+\DeclareOptionX{impressao}{\@ForScreenViewfalse\@LoadHyperreffalse}%
 \DeclareOptionX{hyperref}[load]{\@ForScreenViewtrue%
 	\def\@tempa{#1}\def\@tempb{load}\def\@tempc{config}%
 	\ifx\@tempa\@tempb\@LoadHyperreftrue%
 	\else%
 		\ifx\@tempa\@tempc\@LoadHyperreffalse%
-		\else
-			\ClassError{UnB-EnE}
-				{Valor invalido para opcao hyperref: #1}
-				{Valores validos: hyperref,hyperref=load,hyperref=config}
-		\fi
+		\else%
+			\ClassError{UnB-EnE}%
+				{Valor invalido para opcao hyperref: #1}%
+				{Valores validos: hyperref,hyperref=load,hyperref=config}%
+		\fi%
 	\fi%
-}
+}%
 
-%fontes
-\def\fontelogo{\@ifundefined{XeTeXversion}{ua1}{Arial}}
-\DeclareOptionX{10pt}{\gdef\@fontsize{10pt}}
-\DeclareOptionX{11pt}{\gdef\@fontsize{11pt}}
-\DeclareOptionX{12pt}{\gdef\@fontsize{12pt}}
+% -- Fontes
+\def\fontelogo{\@ifundefined{XeTeXversion}{ua1}{Arial}}%
+\DeclareOptionX{10pt}{\gdef\@fontsize{10pt}}%
+\DeclareOptionX{11pt}{\gdef\@fontsize{11pt}}%
+\DeclareOptionX{12pt}{\gdef\@fontsize{12pt}}%
 
-%estilos das páginas
+% -- Estilos das páginas
 \DeclareOptionX{prestyle}{\gdef\style@pretextual{#1}}
 \DeclareOptionX{textstyle}{\gdef\style@textual{#1}}
 \DeclareOptionX{chapstyle}{\gdef\style@chapter{#1}}
 
-%rascunho (draft)
+% -- Modo rascunho (draft)
 \newif\if@draftthesis
 \DeclareOptionX{draft}{\@draftthesistrue}
 
-%%
-%% --- Processamento de opções e classe-base ---
-%%
+%% ------------------------------------------------------------------------------------------
+%% -- Processamento de opções e classe-base 
+%% ------------------------------------------------------------------------------------------
 
-%repassa opções desconhecidas
+% -- Repassa opções desconhecidas
 \DeclareOptionX*{\PassOptionsToClass{\CurrentOption}{report}}
 
-%default options
+% -- Opções default
 \ExecuteOptionsX{onehalfspacing,hyperref,prestyle=plain,textstyle=plain,chapstyle=plain}
 \ProcessOptionsX\relax
 
 \newcommand{\ifhyperref}[2]{\if@ForScreenView #1\else #2\fi}
 
-%define macro apenas se estiver indefinida
-\def\@defifundef#1#2{\begingroup\expandafter\ifx\csname #1\endcsname\relax%
-\expandafter\gdef\csname #1\endcsname{#2}
-\fi\endgroup}
+% -- Define a seguinte macro apenas se estiver indefinida
+\def\@defifundef#1#2{
+	\begingroup\expandafter
+		\ifx\csname #1\endcsname\relax%
+			\expandafter\gdef\csname #1\endcsname{#2}%
+		\fi
+	\endgroup
+}%
 
-\if@draftthesis
-	\PassOptionsToPackage{headheight=13pt,margin={2cm,1.5cm}}{geometry}
-    \@singlespacingfalse \@onehalfspacingtrue %força onehalfspacing
-    \@defifundef{@fontsize}{11pt}
-\else
-	\PassOptionsToPackage{headheight=15pt,vmargin={3cm,2cm}}{geometry}
-	\if@ForScreenView
-	\PassOptionsToPackage{hmargin={2.5cm,2.5cm}}{geometry}
-    \else
-	\PassOptionsToPackage{hmargin={3cm,2cm}}{geometry}
+\if@draftthesis%
+	\PassOptionsToPackage{headheight=13pt,margin={2cm,1.5cm}}{geometry}%
+    \@singlespacingfalse \@onehalfspacingtrue % força onehalfspacing
+    \@defifundef{@fontsize}{11pt}%
+\else%
+	\PassOptionsToPackage{headheight=15pt,vmargin={3cm,2cm}}{geometry}%
+	\if@ForScreenView%
+		\PassOptionsToPackage{hmargin={2.5cm,2.5cm}}{geometry}%
+    \else%
+		\PassOptionsToPackage{hmargin={3cm,2cm}}{geometry}%
     \fi%
     \@defifundef{@fontsize}{12pt}
-% \fi
+\fi%
 
 \LoadClass[\@fontsize]{report}
 
-%%
-%% --- Pacotes requeridos ---
-%%
-\RequirePackage[brazil,american]{babel}% Idiomas
-\RequirePackage[fixlanguage]{babelbib}%  Idioma das referências
-\RequirePackage[utf8]{inputenc}%         Arquivos na codificação UTF-8
-\RequirePackage[T1]{fontenc}%            Habilita busca com caracteres latinos
-\RequirePackage{lmodern}%                Habilita busca com caracteres latinos
-\RequirePackage{amsmath}%				 Ambiente para equações
-\RequirePackage{xcolor}% 				 Necessário para algum pacote não identificado. Relacionado ao AtBeginDocument e \@conteudoPreTextual (se por o comando dentro do begin{document}, funciona)
+%% ------------------------------------------------------------------------------------------
+%% -- Carrega pacotes requeridos 
+%% ------------------------------------------------------------------------------------------
+\RequirePackage[brazil,american]{babel}% idiomas
+\RequirePackage[fixlanguage]{babelbib}% idioma das referências
+\RequirePackage[utf8]{inputenc}% arquivos na codificação UTF-8
+\RequirePackage[T1]{fontenc}% habilita busca com caracteres latinos
+\RequirePackage{lmodern}% habilita busca com caracteres latinos
+\RequirePackage{amsmath}% ambiente para equações
+% -- xcolor é necessário para algum pacote não identificado. Relacionado ao AtBeginDocument e 
+% \@conteudoPreTextual (se por o comando dentro do begin{document}, funciona)
+\RequirePackage{xcolor}
 \RequirePackage[figure,table]{totalcount}%
 
-
 \@ifundefined{XeTeXversion}{%
-	\PassOptionsToPackage{pdftex}{hyperref}
-
-	\RequirePackage{fixltx2e} %resolve defeitos do LaTeX
-	\RequirePackage{relsize} %utilizada no \@logo
-	\def\@textscale#1#2{\textscale{#1}{#2}}
-}{
-	\PassOptionsToPackage{xetex}{hyperref}
-
-	\def\@textscale#1#2{{\addfontfeatures{Scale=#1}#2}}
+	\PassOptionsToPackage{pdftex}{hyperref}%
+	\RequirePackage{fixltx2e} % resolve defeitos do LaTeX
+	\RequirePackage{relsize} % utilizada no \@logo
+	\def\@textscale#1#2{\textscale{#1}{#2}}%
+}{%
+	\PassOptionsToPackage{xetex}{hyperref}%
+	\def\@textscale#1#2{{\addfontfeatures{Scale=#1}#2}}%
 }%
 
+% -- TODO: substituir a instrução fixa pro parâmetro
 \RequirePackage{graphicx}\graphicspath{{.}{img/}}%
-\RequirePackage{boites}
-\RequirePackage[a4paper,includefoot]{geometry}
+\RequirePackage{boites}%
+\RequirePackage[a4paper,includefoot]{geometry}%
 
-\if@baselineskip\else
-	%define o espaçamento pelo setspace
-	\RequirePackage{setspace}
-\fi
+% define o espaçamento pelo setspace
+\if@baselineskip\else%
+	\RequirePackage{setspace}%
+\fi%
 
 \PassOptionsToPackage{pdfdisplaydoctitle=true,pagebackref,linktocpage=true}{hyperref}%
 
-\if@LoadHyperref
+\if@LoadHyperref%
 	\RequirePackage[hidelinks]{hyperref}%
-\fi
+\fi%
 
-\usepackage[acronym,nonumberlist]{glossaries}% Após o hyperref!
+\usepackage[acronym,nonumberlist]{glossaries}% carregar após o hyperref!
 \makeglossaries%
 
-\usepackage[tocindentauto]{tocstyle}% Indentação de anexos na TOC
+\usepackage[tocindentauto]{tocstyle}% indentação de anexos na TOC
 \usetocstyle{standard}%
 
-%para gerar o label {TotPaginas}
-\RequirePackage{atbegshi}
-\newcounter{TotPaginas}
+% -- Para gerar o label {TotPaginas}
+\RequirePackage{atbegshi}%
+\newcounter{TotPaginas}%
 
-%%
-%% --- Adaptação da classe-base ---
-%%
-\newcommand{\chapterformat}{%formatação de título de capítulos
-\Huge \bfseries
-}
+%% ------------------------------------------------------------------------------------------
+%% -- Adaptação da classe-base 
+%% ------------------------------------------------------------------------------------------
+\newcommand{\chapterformat}{% formatação de título de capítulos
+	\Huge\bfseries%
+}%
 
-\newcommand{\chapteralign}{%alinhamento de título de capítulos
+\newcommand{\chapteralign}{% alinhamento de título de capítulos
 	\ClassError{UnB-EnE}
-			{Comando \protect\pretextual\space nao foi chamado}
-			{Nao pode haver titulos antes do comando \protect\pretextual}
+		{Comando \protect\pretextual\space nao foi chamado}
+		{Nao pode haver titulos antes do comando \protect\pretextual}
 }
 
 %suporte para alinhamento e formatação configurável
@@ -410,7 +425,16 @@
 	\pdfstringdefDisableCommands{\renewcommand*{\textlinf}[1]{##1}}
 }
 
-%titulo e subtitulo do trabalho
+%definição do diretório para os fontes
+\newcommand{\texpath}[1]{%
+	\ifx&#1&%
+		\gdef\@texpath{#1}%
+	\else
+		\gdef\@texpath{exemplos/tex}%
+	\fi
+}
+
+%definição titulo e subtitulo do trabalho
 \renewcommand*{\title}{\@dblarg\set@title}%
 \newcommand*{\set@title}[2][]{%
 	\xdef\@title{#1}
@@ -449,12 +473,12 @@
 %definicao do coautor
 \newcommand{\coautor}[2]{
 	\if@posgraduacao
-		\ClassError{UnB-CIC}
+		\ClassError{UnB-EnE}
 			{Comando \protect\coautor\space invalido para mestrado}
 			{Apenas trabalhos de graduacao podem ter mais de um autor}
 	\fi
 	\@ifundefined{primeiroautor}{
-		\ClassError{UnB-CIC}
+		\ClassError{UnB-EnE}
 			{Comando \protect\autor\space deve ser chamado antes de \protect\coautor\space}
 			{O autor principal deve ser definido antes do secundario}
 	}{}
@@ -498,12 +522,10 @@
 \def\at@coorienta[#1]#2#3{\def\@sexocoorientador{Coorientadora}%
                         \def\@nomecoorientador{#2}%
                         \def\@filicoorientador{#3}}%
-                        %%%\@defsegundomembro{#2}{#3}}
 
 \def\at@cooriento#1#2{\def\@sexocoorientador{Coorientador}%
                         \def\@nomecoorientador{#1}%
                         \def\@filicoorientador{#2}}%
-                        %%%\@defsegundomembro{#1}{#2}}
 
 % definicao da banca
 % o orientador é sempre o primeiro membro da banca
@@ -532,17 +554,17 @@
 			\else
                 \if@doutorado%
                     \if@quintomembro%
-                        \ClassError{UnB-CIC}%
-                            {A banca so pode ter 5 membros}%
-                            {Lembrar que orientador e coorientador ja fazem parte da banca}%
+                        \ClassError{UnB-EnE}%
+                            {A banca deve ter no maximo 5 membros}%
+                            {Lembre-se que orientador e coorientador ja fazem parte da banca}%
                     \else
                         \@defquintomembro{#1}{#2}%
                         \@quintomembrotrue%
                     \fi%
                 \else%
-                    \ClassError{UnB-CIC}%
-                        {A banca so pode ter 3 ou 4 membros}%
-                        {Lembrar que orientador e coorientador ja fazem parte da banca}%
+                    \ClassError{UnB-EnE}%
+                        {A banca deve ter 3 ou 4 membros}%
+                        {Lembre-se que orientador e coorientador ja fazem parte da banca}%
                 \fi%
 			\fi
 		\fi
@@ -814,18 +836,18 @@
 
 	% Controle de membros da banca
 	\ifx\@nometres\undefined%
-        \ClassError{UnB-CIC}%
+        \ClassError{UnB-EnE}%
             {A banca deve ter pelo menos 3 membros}%
-            {Lembrar que orientador e coorientador ja fazem parte da banca}%
+            {Lembre-se que orientador e coorientador ja fazem parte da banca}%
     \fi%
     \if@doutorado%
 		\if@qualificacao%
 		\else%
 	        \if@quintomembro%
 	        \else%
-	            \ClassError{UnB-CIC}%
+	            \ClassError{UnB-EnE}%
 	                {A banca deve ter 5 membros}%
-	                {Lembrar que orientador e coorientador ja fazem parte da banca}%%
+	                {Lembre-se que orientador e coorientador ja fazem parte da banca}%%
 	        \fi%
 	    \fi%
     \fi%
@@ -837,18 +859,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Novos Comandos %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\unbene}{\texttt{UnB-EnE}}%
+
 \newcommand{\titulo}[1]{\title{#1}}%
 
 \newcommand{\@erroSeNaoExiste}[1]{%
 	\IfFileExists{#1}{}%
-		{\ClassError{UnB-CIC}%
+		{\ClassError{UnB-EnE}%
 		{Arquivo "#1" nao encontrado.}
 		{O arquivo "#1" eh necessário.}}%
 }%
 
 \newcommand{\@inputTeXFile}[1]{%
-	\@erroSeNaoExiste{#1}%
-	\input{#1}%
+	\@erroSeNaoExiste{\@texpath/#1}%
+	\input{\@texpath/#1}%
 }%
 \newcommand{\@IncluirSecao}[1]{%
 	\begin{#1}%
@@ -905,7 +930,7 @@
 	\@IncluirSecao{abstract}%
 	\selectlanguage{brazil}%
     \selectbiblanguage{brazil}%
-	\@erroSeNaoExiste{bibliografia.bib}%
+	\@erroSeNaoExiste{exemplos/bibliografia.bib}%
 
 	\tableofcontents%
 	\iftotalfigures\listoffigures\fi%
