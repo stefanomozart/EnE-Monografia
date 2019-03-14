@@ -1,30 +1,26 @@
 \newcommand{\texCommand}[1]{\texttt{\textbackslash{#1}}}%
 
 \newcommand{\exemplo}[1]{%
-\vspace{\baselineskip}%
-\noindent\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}%
-\\\vspace{\baselineskip}}%
+	\vspace{\baselineskip}%
+	\noindent\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}%
+	\\\vspace{\baselineskip}}%
 
 \newcommand{\exemploVerbatim}[1]{%
-\vspace{\baselineskip}%
-\noindent\fbox{\begin{minipage}{\textwidth}%
-#1\end{minipage}}%
-\\\vspace{\baselineskip}}%
+	\vspace{\baselineskip}%
+	\noindent\fbox{\begin{minipage}{\textwidth}%
+			#1\end{minipage}}%
+	\\\vspace{\baselineskip}}%
 
 
-Este capítulo descreve a classe \unbcic, e demonstra os comandos disponíveis. A
-última versão foi atualizada pelo Prof. Ralha, em 2008 (vide \refAnexo{Anexo1}).
-A melhor forma de entender o funcionamento é observar o arquivo principal deste
-documento (\texttt{monografia.tex}).
+Este capítulo descreve a classe \unbene, e demonstra os comandos disponíveis. A última versão foi
+atualizada em 2013 (vide \refAnexo{Anexo1}). A melhor forma de entender o funcionamento é observar
+o arquivo principal deste documento (\texttt{monografia.tex}).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Gerando o PDF}
 
-Para gerar corretamente as referências cruzadas, é necessário processar os arquivos
-mais de uma vez com a seguinte sequência de comandos (supondo que o arquivo
-principal seja \texttt{monografia.tex}).
+Para gerar corretamente as referências cruzadas, é necessário processar os arquivos mais de uma vez
+com a seguinte sequência de comandos (supondo que o arquivo principal seja \texttt{monografia.tex}).
 
 \begin{verbatim}
 pdflatex monografia
@@ -33,133 +29,127 @@ makeglossaries monografia
 pdflatex monografia
 \end{verbatim}
 
-O primeiro comando processa os arquivos, indicando quais referências foram citadas
-no texto (bibliográficas ou cruzadas), o segundo comando processa o arquivo
-\texttt{.bib} que contém as informações bibliográficas, o terceiro gera o índice
-de siglas/abreviaturas, e o último comando junta todas estas informações,
-produzindo um texto com referências cruzadas funcionais.
+O primeiro comando processa os arquivos, indicando quais referências foram citadas no texto 
+(bibliográficas ou cruzadas), o segundo comando processa o arquivo \texttt{.bib} que contém as 
+informações bibliográficas, o terceiro gera o índice de siglas/abreviaturas, e o último comando 
+junta todas estas informações, produzindo um texto com referências cruzadas funcionais.
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Opções}
-O documento é gerado em função do curso dado como opção [obrigatória] a classe.
-Os cursos disponíveis são:
+O documento é gerado em função do curso dado como opção [obrigatória] a classe. Os cursos 
+disponíveis são:
 \begin{description}
-  \item[bacharelado] Bacharelado em Ciência da Computação
-  \item[licenciatura] Licenciatura em Computação
-  \item[engenharia] Engenharia de Computação
-  \item[mestrado, ppginf] Mestrado em Informática
-  \item[doutorado, ppginf] Doutorado em Informática
-  \item[mestrado, ppca] Mestrado Profissional em Computação Aplicada
+	\item[eletrica] Bacharelado em Engenharia Elétrica;
+	\item[redes] Bacharelado em Engenharia de Redes de Comunicação;
+	\item[eletrica] Bacharelado em Engenharia Mecatrônica;
+	\item[eletrica] Bacharelado em Engenharia de Computação;
+	\item[mestrado, ppgee] Mestrado em Engenharia Elétrica
+	\item[doutorado, ppgee] Doutorado em Engenharia Elétrica
+	\item[mestrado, pgea] Mestrado em Engenharia de Sistemas Eletrônicos e de Automação;
+	\item[doutorado, pgea] Doutorado em Engenharia de Sistemas Eletrônicos e de Automação;
+	\item[mestrado, ppee] Mestrado Profissional em Engenharia Elétrica.
 \end{description}
 
-No caso dos cursos de pós-graduação, há o \emph{exame de qualificação} do
-discente, a qual deverá constar a definição, pertinência do projeto, a sua
-abrangência, comprovação da eficiência e eficácia da metodologia proposta, uma
-revisão bibliográfica detalhada e o cronograma para conclusão do projeto~\cite{ppginf}.
-Para gerar o documento referente a este exame, use a opção \textbf{qualificacao}.
+No caso dos cursos de doutorado, há o \emph{exame de qualificação} do discente, o qual visa 
+confirmar a pertinência do projeto de pesquisa do aluno, entre outros aspectos. Neste exame, o
+aluno pode apresentar um documento que traga a definição do problema abordado, seu impacto 
+(econômico, social, etc), a solução proposta, sua abrangência, comprovação da eficiência e eficácia
+da metodologia proposta, uma revisão bibliográfica detalhada e o cronograma para conclusão do 
+projeto~\cite{ppginf}. Para gerar o documento referente a este exame, use a opção
+\textbf{qualificacao}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Informações do Trabalho}%
-O passo seguinte é definir as informações do trabalho, identificando os autores
-e os membros da banca (atenção a definição do gênero!). Por exemplo, para este
-documento foram utilizadas as seguintes definições:
+O passo seguinte é definir as informações do trabalho, identificando os autores e os membros da 
+banca (atenção à definição do gênero!). Por exemplo, para este documento foram utilizadas as 
+seguintes definições:
 
 \begin{verbatim}
-\orientador{\prof \dr Guilherme Novaes Ramos}{CIC/UnB}%
-%\coorientador{\prof \dr José Ralha}{CIC/UnB}
-\coordenador[a]{\prof[a] \dr[a] Ada Lovelace}{Bibliothèque universelle de Genève}%
-\diamesano{24}{dezembro}{2014}%
+\orientador{\prof \dr Adi Shamir}{Weizmann Institute}%
+\coorientador{\prof \dr Ivan Damg\aard}{Aarhus University}%
+\coordenador[a]{\prof[a] \dr[a] Alexandra Boldyreva}{Georgia Tech}%
+\diamesano{13}{março}{2019}%
 
-\membrobanca{\prof \dr Donald Knuth}{Stanford University}%
-\membrobanca{\dr Leslie Lamport}{Microsoft Research}%
+\membrobanca{\prof \dr Yehuda Lindell}{Bar Ilan University}%
+\membrobanca{\dr Silvio Micali}{Massachusetts Institute of Technology}%
 
-\autor{Guilherme N.}{Ramos}%
+\autor{Stefano M. P. C.}{Souza}%
 \end{verbatim}
 
 Sobre o texto, definiu-se:
 \begin{verbatim}
-\titulo{UnB-CIC: Uma classe em LaTeX para textos do Departamento de
-Ciência da Computação}%
+\titulo{UnB-EnE: Uma classe em LaTeX para textos do Departamento de Engenharia Elétrica}%
 
 \palavraschave{LaTeX, metodologia científica}%
 \keywords{LaTeX, scientific method}%
 \end{verbatim}
 
-O título, apesar do tamanho reduzido, deveria apresentar uma ideia clara de todo
-o trabalho. As palavras-chave devem indicar os conceitos genéricos mais relevantes
-utilizados, e servem para indexação e busca de documentos que tratam os mesmos
-temas.
+O título, apesar do tamanho reduzido, deveria apresentar uma ideia clara de todo o trabalho. As
+palavras-chave devem indicar os conceitos genéricos mais relevantes utilizados, e servem para 
+indexação e busca de documentos que tratam os mesmos temas.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Arquivos}
-Os seguintes arquivos são exigidos:
+Os seguintes arquivos são sugeridos:
 \begin{description}%
-    \item[tex/abstract.tex] Contém o \emph{abstract} do texto.%
-    \item[tex/agradecimentos.tex] Contém os agradecimentos do autor.%
-    \item[bibliografia.bib] Contém as referências bibliográficas no formato
-    ${\mathrm{B{\scriptstyle{IB}}T_{\displaystyle E}X}}$\footnote{\url{http://www.bibtex.org}}.%
-    %\item[tex/capitulo1.tex] Contém o primeiro capítulo.%
-    \item[tex/dedicatoria.tex] Contém a dedicatória do autor.%
-    \item[tex/siglas.tex] Contém as definições de siglas/abreviaturas.%
-    \item[tex/resumo.tex] Contém o resumo do texto.%
+	\item[tex/abstract.tex] Contém o \emph{abstract} do texto;%
+	\item[tex/agradecimentos.tex] Contém os agradecimentos do autor;%
+	\item[tex/dedicatoria.tex] Contém a dedicatória do autor;%
+	\item[tex/siglas.tex] Contém as definições de siglas/abreviaturas;%
+	\item[tex/resumo.tex] Contém o resumo do texto;%
+	\item[bibliografia.bib] Contém as referências bibliográficas no formato
+	${\mathrm{B{\scriptstyle{IB}}T_{\displaystyle E}X}}$\footnote{\url{http://www.bibtex.org}}.%
 \end{description}%
 
-Os alunos dos Programas de Pós-Graduação da Universidade de Brasília devem incluir a ficha catalográfica em seus documentos, gerada pela \acrfull{BCE}. Neste caso, o aluno deve substituir o arquivo PDF \textbf{doc/BDM.pdf} pelo fornecido pela \acrshort{BCE}. \emph{Atenção}, para que o arquivo seja incluido automaticamente pela classe, o nome deve ser \emph{obrigatoriamente} \textbf{BDM.pdf}.%
+Os alunos dos Programas de Pós-Graduação da Universidade de Brasília devem incluir a ficha 
+catalográfica em seus documentos, gerada pela \acrfull{BCE}. Neste caso, o aluno deve substituir o 
+arquivo PDF \textbf{doc/BDM.pdf} pelo fornecido pela \acrshort{BCE}. \emph{Atenção}, para que o 
+arquivo seja incluido automaticamente pela classe, o nome deve ser \emph{obrigatoriamente} 
+\textbf{BDM.pdf}.%
 
-Demais arquivos não são inseridos automaticamente, mas a classe oferece comandos
-para inclusão, facilitando a organização destes.
+Demais arquivos não são inseridos automaticamente, mas a classe oferece comandos para inclusão,
+facilitando a organização destes.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Documento}
-Todo documento em \LaTeX\ é delimitado pelo ambiente \emph{document}. O caso aqui
-não é diferente, mas a interação é simplificada. Basicamente, a classe \unbcic\
-funciona ``automagicamente'' em função dos comandos e dos nomes dos arquivos.
+Todo documento em \LaTeX\ é delimitado pelo ambiente \emph{document}. O caso aqui não é diferente,
+mas a interação é simplificada. Basicamente, a classe \unbene funciona ``automagicamente'' em 
+função dos comandos e dos nomes dos arquivos.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Capítulos}
-O texto de cada capítulo deve estar em seu próprio arquivo, dentro do diretório
-correto \texttt{tex}. A inclusão do texto é feita pelo comando:
+Sugere-se que o texto de cada capítulo seja disposto em seu próprio arquivo, dentro do diretório 
+\texttt{tex}. A inclusão do texto é feita pelo comando:
 \begin{verbatim}
 \capitulo{arquivo}{título}%
 \end{verbatim}
 
 Os dois argumentos são:
 \begin{description}%
-\item[arquivo] argumento obrigatório que define o nome do arquivo que contém o
-texto do capítulo.
-\item[título] argumento obrigatório que define o título do capítulo.
+	\item[arquivo] argumento obrigatório que define o path do arquivo que contém o texto do 
+	capítulo. 
+	Note que não é necessário incluir a extenção do arquivo (.tex ou .latex)
+	\item[título] argumento obrigatório que define o título do capítulo.
 \end{description}%
 
-Por exemplo, este texto está no arquivo \texttt{2\_UnB-CIC.tex}, e para criar os
-dois capítulos vistos até agora, o documento seria:
+Por exemplo, este texto está no arquivo \texttt{2\_UnB-EnE.tex}, e para criar os dois capítulos
+vistos até agora, o documento seria:
 
 \begin{verbatim}
 \begin{document}%
-  \capitulo{1_Introducao}{Introdução}% inclui o arquivo 1_Introducao.tex
-  \capitulo{2_UnB-CIC}{A Classe \unbcic}% inclui o arquivo 2_UnB-CIC.tex
+\capitulo{tex/1_Introducao}{Introdução}% inclui o arquivo \texttt{./tex/1_Introducao.tex}
+\capitulo{tex/2_UnB-EnE}{A Classe \unbene}% inclui o arquivo \texttt{./tex/2_UnB-EnE.tex}
 \end{document}%
 \end{verbatim}
 
-Para incluir um terceiro capítulo neste texto, cujo conteúdo trata de trabalhos
-conclusão de curso, basta criar o arquivo \texttt{tex/3\_TCC.tex} e adicioná-lo
-com o comando descrito.
+Para incluir um terceiro capítulo neste texto, cujo conteúdo trata de trabalhos conclusão de curso,
+basta criar o arquivo \texttt{tex/3\_TCC.tex} e adicioná-lo com o comando descrito.
 
-No caso de apêndices ou anexos necessários, o texto de cada um deve estar em seu
-próprio arquivo, também dentro do diretório \texttt{tex/capitulos}. Para facilitar
+No caso de apêndices ou anexos necessários, o texto de cada um deve estar em seu próprio arquivo, 
+preferencialmente dentro no mesmo diretório que os capítulos (e.g. \texttt{tex/}). Para facilitar
 as referências cruzadas, estes devem ser inclusos com os seguintes comandos
 (respectivamente):
 \begin{verbatim}
@@ -167,25 +157,24 @@ as referências cruzadas, estes devem ser inclusos com os seguintes comandos
 \anexo{arquivo}{título}%
 \end{verbatim}
 
-Os dois argumentos funcionam exatamente como \texCommand{capitulo}. Desta forma,
-o exemplo de um documento ``completo'' seria: %
+Os dois argumentos funcionam exatamente como \texCommand{capitulo}. Desta forma, o exemplo de um
+documento ``completo'' seria: %
 
 \begin{verbatim}
 \begin{document}%
-  \capitulo{1_Introducao}{Introdução}%
-  \capitulo{2_UnB-CIC}{A Classe \unbcic}%
-  \capitulo{3_TCC}{Trabalho de Conclusão de Curso}%
+\capitulo{tex/1_Introducao}{Introdução}%
+\capitulo{tex/2_UnB-CIC}{A Classe \unbcic}%
+\capitulo{tex/3_TCC}{Trabalho de Conclusão de Curso}%
 
-  \apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
-  \anexo{Anexo1}{Parte da Documentação Original}%
+\apendice{anexos/Apendice_Fichamento}{Fichamento de Artigo Científico}%
+\anexo{anexos/Anexo1}{Parte da Documentação Original}%
 \end{document}%
 \end{verbatim}
 
-Usando estes comandos, o rótulo de cada capítulo/apêndice/anexo é criado
-automaticamente a partir do nome do arquivo para posterior referência cruzada.
-Por exemplo, este capítulo pode ser referenciado com o comando
-\texCommand{ref\{2\_UnB-CIC\}} (cujo resultado é: \ref{2_UnB-CIC}), mas a classe
-oferece opções mais interessantes. Os comandos para referenciar çapítulos são:
+Usando estes comandos, o rótulo de cada capítulo/apêndice/anexo é criado automaticamente a partir 
+do nome do arquivo para posterior referência cruzada. Por exemplo, este capítulo pode ser 
+referenciado com o comando \texCommand{ref\{2\_UnB-EnE\}} (cujo resultado é: \ref{2_UnB-EnE}), mas 
+a classe oferece opções mais interessantes. Os comandos para referenciar çapítulos são:
 
 \begin{verbatim}
 \refCap{referência}%
@@ -194,9 +183,9 @@ oferece opções mais interessantes. Os comandos para referenciar çapítulos s�
 
 Onde os argumentos são:
 \begin{description}
-\item[referência] nome da referência do capítulo.
-\item[referência inicial] nome da referência do capítulo inicial da sequência de capítulos.
-\item[referência final] nome da referência do capítulo final da sequência de capítulos.
+	\item[referência] nome da referência do capítulo.
+	\item[referência inicial] nome da referência do capítulo inicial da sequência de capítulos.
+	\item[referência final] nome da referência do capítulo final da sequência de capítulos.
 \end{description}
 
 O \refCap{1_Introducao} é referenciado com o comando:
@@ -204,47 +193,45 @@ O \refCap{1_Introducao} é referenciado com o comando:
 \refCap{1_Introducao}%
 \end{verbatim}
 
-Considerando  \refCap{1_Introducao} e também o \refCap{2_UnB-CIC}, é possível referenciar
-a \emph{sequência} de \refCaps{1_Introducao}{2_UnB-CIC} com o comando:
+Considerando \refCap{1_Introducao} e também o \refCap{2_UnB-EnE}, é possível referenciar a 
+\emph{sequência} de \refCaps{1_Introducao}{2_UnB-EnE} com o comando:
 \begin{verbatim}
-\refCaps{1_Introducao}{2_UnB-CIC}%
+\refCaps{1_Introducao}{2_UnB-EnE}%
 \end{verbatim}
 
-Embora estes comandos não ``simplifiquem'' a inclusão de figuras, eles
-certamente facilitam a referência a elas com um padrão uniforme, e nada impede o
-uso dos comandos padrões.
+Estes comandos visam garantir um padrão uniforme para referenciamento dos capítulos], mas nada
+impede o uso dos comandos padrão do \LaTeX\.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Figuras}
-Para manter a organização dos arquivos de seu documento, as figuras devem ficar
-separadas no diretório \texttt{img}. As funções de inclusão de figuras permanecem
-as mesmas, mas a classe \unbcic\ oferece uma forma mais simples de inserir uma
-figura (e de referenciá-la). Basta executar o comando:
+Para manter a organização dos arquivos de seu documento, sugere-se que as figuras sejam separadas no
+diretório \texttt{img}. As funções de inclusão de figuras permanecem as mesmas, mas a classe 
+\unbene oferece uma forma mais simples de inserir uma figura (e de referenciá-la). Basta executar o 
+comando:
 
 \begin{verbatim}
-\figura[posição]{arquivo}{legenda}{referência}{tamanho}%
+\figura[posição]{path}{legenda}{referência}{tamanho}%
 \end{verbatim}
 
 Os 5 argumentos são:
 \begin{description}
-\item[posição] argumento [opcional] para posicionar a figura no texto\footnote{Mais
-informações na documentação do ambiente \emph{figure}, mas este é um bom começo: \url{http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions}.}.
-\item[arquivo] nome do arquivo da imagem.
-\item[legenda] legenda da figura.
-\item[referência] nome da referência da figura para referências cruzadas.
-\item[tamanho] tamanho da imagem\footnote{Mais informações na documentação do comando
-\texCommand{includegraphics}.}.
+	\item[posição] argumento [opcional] para posicionar a figura no texto\footnote{Mais
+		informações na documentação do ambiente \emph{figure}, mas este é um bom começo: 
+		\url{http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions}.}.
+	\item[arquivo] path/nome do arquivo da imagem.
+	\item[legenda] legenda da figura.
+	\item[referência] nome da referência da figura para referências cruzadas.
+	\item[tamanho] tamanho da imagem\footnote{Mais informações na documentação do comando
+		\texCommand{includegraphics}.}.
 \end{description}
 
 Por exemplo, a \refFig{unbPB}, inserida com o seguinte comando:
 
 \begin{verbatim}
-\figura[!h]{contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
+\figura[!h]{img/contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
 \end{verbatim}
 
-\figura[!h]{contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
+\figura[!h]{img/contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
 
 Os comandos para referenciar figuras são:
 
@@ -255,9 +242,9 @@ Os comandos para referenciar figuras são:
 
 Onde os argumentos são:
 \begin{description}
-\item[referência] nome da referência da figura.
-\item[referência inicial] nome da referência da figura inicial da sequência de figuras.
-\item[referência final] nome da referência da figura final da sequência de figuras.
+	\item[referência] nome da referência da figura.
+	\item[referência inicial] nome da referência da figura inicial da sequência de figuras.
+	\item[referência final] nome da referência da figura final da sequência de figuras.
 \end{description}
 
 A \refFig{unbPB} é referenciada com o comando:
@@ -273,7 +260,8 @@ a \emph{sequência} de \refFigs{unbPB}{unb2} com o comando:
 \refFigs{unbPB}{unb2}%
 \end{verbatim}
 
-Algumas vezes deseja-se usar a figura de uma das referências bibliográficas. Neste caso, utilize o comando:
+Algumas vezes deseja-se usar a figura de uma das referências bibliográficas. Neste caso, utilize o 
+comando:
 
 \begin{verbatim}
 \figuraBib[posição]{arquivo}{legenda}{bib}{referência}{tamanho}%
@@ -281,7 +269,7 @@ Algumas vezes deseja-se usar a figura de uma das referências bibliográficas. N
 
 Os argumentos são os mesmos do comando \texCommand{figura}, acrescidos de:
 \begin{description}
-\item[bib] nome da referência bibliográfica que originou a figura.
+	\item[bib] nome da referência bibliográfica que originou a figura.
 \end{description}
 
 Por exemplo, a \refFig{latexvsword} foi gerada com o comando:
@@ -290,21 +278,20 @@ Por exemplo, a \refFig{latexvsword} foi gerada com o comando:
 {pinteric_latex_2004}{latexvsword}{width=.45\textwidth}%
 \end{verbatim}
 
-Embora estes comandos não ``simplifiquem'' a inclusão de figuras, eles
-certamente facilitam a referência a elas com um padrão uniforme, e nada impede o
-uso dos comandos padrões.
+Embora estes comandos não ``simplifiquem'' a inclusão de figuras, eles certamente facilitam a 
+referência a elas com um padrão uniforme, e nada impede o uso dos comandos padrões.
 
-\figura{positivo_cor}{Outra marca colorida}{unb2}{width=0.25\textwidth}%
+\figura{img/positivo_cor}{Outra marca colorida}{unb2}{width=0.25\textwidth}%
+
+Note que o diretório \texttt{./img}, bem como os arquivos \texttt{./img/positivo_cor.pdf} e 
+\texttt{./img/contorno_preto.pdf} são requeridos pela classe para a geração da capa e das folhas
+de rosto.
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Equações}
-As funções de inclusão de equações permanecem as mesmas, mas a classe \unbcic\
-oferece uma forma mais simples de inserir uma equação (e de referenciá-la). Basta
-executar o comando:
+As funções de inclusão de equações permanecem as mesmas, mas a classe \unbene\ oferece uma forma 
+mais simples de inserir uma equação (e de referenciá-la). Basta executar o comando:
 
 \begin{verbatim}
 \equacao{referência}{fórmula}%
@@ -312,8 +299,8 @@ executar o comando:
 
 Os 2 argumentos são:
 \begin{description}
-\item[referência] nome da referência da equação para referências cruzadas.
-\item[fórmula] a equação em si.
+	\item[referência] nome da referência da equação para referências cruzadas.
+	\item[fórmula] a equação em si.
 \end{description}
 
 Por exemplo, a \refEq{pitagoras}, inserida com o seguinte comando:
@@ -339,31 +326,27 @@ Os comandos para referenciar equações são:
 
 Onde os argumentos são:
 \begin{description}
-\item[referência] nome da referência da equação.
-\item[referência inicial] nome da referência da equação inicial da sequência de equações.
-\item[referência final] nome da referência da equação final da sequência de equações.
+	\item[referência] nome da referência da equação.
+	\item[referência inicial] nome da referência da equação inicial da sequência de equações.
+	\item[referência final] nome da referência da equação final da sequência de equações.
 \end{description}
 
-Considerando a \refEq{pitagoras} e também a \refEq{eq}, é possível referenciar
-a \emph{sequência} de \refEqs{pitagoras}{eq} com o comando:
+Considerando a \refEq{pitagoras} e também a \refEq{eq}, é possível referenciar a \emph{sequência} 
+de \refEqs{pitagoras}{eq} com o comando:
 \begin{verbatim}
 \refEqs{pitagoras}{eq}%
 \end{verbatim}
 
-Embora estes comandos não ``simplifiquem'' a inclusão de equações, eles
-certamente facilitam a referência a elas com um padrão uniforme e nada impede o
-uso dos comandos padrões.
+Embora estes comandos não ``simplifiquem'' a inclusão de equações, eles certamente facilitam a 
+referência a elas com um padrão uniforme e nada impede o uso dos comandos padrões.
 
 \equacao{eq}{d=c^3 - \frac{a}{b}}%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tabelas}
-As funções de inclusão de tabelas permanecem as mesmas, mas a classe \unbcic\
-oferece uma forma mais simples de inserir uma tabela (e de referenciá-la). Basta
-executar o comando:
+As funções de inclusão de tabelas permanecem as mesmas, mas a classe \unbene\ oferece uma forma 
+mais simples de inserir uma tabela (e de referenciá-la). Basta executar o comando:
 
 \begin{verbatim}
 \tabela{legenda}{referência}{especificações}{tabela}%
@@ -371,29 +354,29 @@ executar o comando:
 
 Os 4 argumentos são:
 \begin{description}
-\item[legenda] legenda da tabela.
-\item[referência] nome da referência da tabela para referências cruzadas.
-\item[especificações] alinhamento de cada coluna da tabela.
-\item[tabela] o conteúdo da tabela\footnote{Mais informações na documentação do
-ambiente \emph{\href{http://en.wikibooks.org/wiki/LaTeX/Tables}{tabular}}.}.
+	\item[legenda] legenda da tabela.
+	\item[referência] nome da referência da tabela para referências cruzadas.
+	\item[especificações] alinhamento de cada coluna da tabela.
+	\item[tabela] o conteúdo da tabela\footnote{Mais informações na documentação do
+		ambiente \emph{\href{http://en.wikibooks.org/wiki/LaTeX/Tables}{tabular}}.}.
 \end{description}
 
 Por exemplo, a \refTab{exemplo}, inserida com o seguinte comando:
 \begin{verbatim}
 \tabela{Exemplo de tabela}{exemplo}{| c | c |}%
-  {\hline
-  \textbf{Item} & \textbf{Descrição} \\\hline
-  1 & Descrição 1 \\\hline
-  2 & Descrição 2 \\\hline
-  3 & Descrição 3 \\\hline}%
+{\hline
+\textbf{Item} & \textbf{Descrição} \\\hline
+1 & Descrição 1 \\\hline
+2 & Descrição 2 \\\hline
+3 & Descrição 3 \\\hline}%
 \end{verbatim}
 
 \tabela{Exemplo de tabela}{exemplo}{| c | c |}%
-  {\hline
-  \textbf{Item} & \textbf{Descrição} \\\hline
-  1 & Descrição 1 \\\hline
-  2 & Descrição 2 \\\hline
-  3 & Descrição 3 \\\hline}%
+{\hline
+	\textbf{Item} & \textbf{Descrição} \\\hline
+	1 & Descrição 1 \\\hline
+	2 & Descrição 2 \\\hline
+	3 & Descrição 3 \\\hline}%
 
 Os comandos para referenciar tabelas são:
 
@@ -404,9 +387,9 @@ Os comandos para referenciar tabelas são:
 
 Onde os argumentos são:
 \begin{description}
-\item[referência] nome da referência da tabela.
-\item[referência inicial] nome da referência da tabela inicial da sequência de tabelas.
-\item[referência final] nome da referência da tabela final da sequência de tabelas.
+	\item[referência] nome da referência da tabela.
+	\item[referência inicial] nome da referência da tabela inicial da sequência de tabelas.
+	\item[referência final] nome da referência da tabela final da sequência de tabelas.
 \end{description}
 
 Considerando a \refTab{exemplo} e também a \refTab{exemplo2}, é possível referenciar
@@ -415,7 +398,8 @@ a \emph{sequência} de \refTabs{exemplo}{exemplo2} com o comando:
 \refTabs{exemplo}{exemplo2}%
 \end{verbatim}
 
-Algumas vezes deseja-se usar a tabela de uma das referências bibliográficas. Neste caso, utilize o comando:
+Algumas vezes deseja-se usar a tabela de uma das referências bibliográficas. Neste caso, utilize o 
+comando:
 
 \begin{verbatim}
 \tabelaBib{legenda}{bib}{referência}{especificações}{tabela}%
@@ -423,21 +407,23 @@ Algumas vezes deseja-se usar a tabela de uma das referências bibliográficas. N
 
 Os argumentos são os mesmos do comando \texCommand{tabela}, acrescidos de:
 \begin{description}
-\item[bib] nome da referência bibliográfica que originou a tabela.
+	\item[bib] nome da referência bibliográfica que originou a tabela.
 \end{description}
 
 \tabelaBib{Matriz de Decisão de Eisenhower}
 {covey_first_1995}{EisenhowerTable}{ r | c | c }{
-                        & \textbf{Urgente} & \textbf{Não Urgente} \\\hline%
-\textbf{Importante}     & Crises       & Planejamentos \\\hline%
-\textbf{Não importante} & Interrupções & Distrações%
+	& \textbf{Urgente} & \textbf{Não Urgente} \\\hline%
+	\textbf{Importante}     & Crises       & Planejamentos \\\hline%
+	\textbf{Não importante} & Interrupções & Distrações%
 }%
 
-Por exemplo, a \refTab{EisenhowerTable}\footnote{Vale a pena assistir o vídeo da palestra \emph{Time Management} de Randy Pausch: \url{http://www.cs.virginia.edu/~robins/Randy/}} foi gerada com o comando:
+Por exemplo, a \refTab{EisenhowerTable}\footnote{Vale a pena assistir o vídeo da palestra 
+\emph{Time Management} de Randy Pausch: \url{http://www.cs.virginia.edu/~robins/Randy/}} foi gerada 
+com o comando:
 \begin{verbatim}
 \tabelaBib{Matriz de Decisão de Eisenhower}
 {covey_first_1995}{EisenhowerTable}{ r | c | c }{%
-                    & \textbf{Urgente} & \textbf{Não Urgente} \\\hline%
+& \textbf{Urgente} & \textbf{Não Urgente} \\\hline%
 \textbf{Importante}     & Crises       & Planejamentos \\\hline%
 \textbf{Não importante} & Interrupções & Distrações%
 }%
@@ -448,11 +434,11 @@ certamente facilitam a referência a elas com um padrão uniforme, e nada impede
 uso dos comandos padrões.
 
 \tabela{Outro exemplo de tabela}{exemplo2}{| r | c | c | l |}%
-  {\hline
-  \textbf{\#} & \textbf{A} & \textbf{B} & \textbf{Comentário} \\\hline
-  1 & $a_1$ & $b_1$ & comentário 1\\
-  2 & $a_2$ & $b_2$ & comentário 2\\
-  3 & $a_3$ & $b_3$ & comentário 3\\\hline}%
+{\hline
+	\textbf{\#} & \textbf{A} & \textbf{B} & \textbf{Comentário} \\\hline
+	1 & $a_1$ & $b_1$ & comentário 1\\
+	2 & $a_2$ & $b_2$ & comentário 2\\
+	3 & $a_3$ & $b_3$ & comentário 3\\\hline}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -467,8 +453,8 @@ a inserção feita com o comando:
 
 Onde os argumentos são:
 \begin{description}
-\item[sigla] a própria sigla/abreviatura.
-\item[descrição] definição completa do que representa a sigla/abreviatura.
+	\item[sigla] a própria sigla/abreviatura.
+	\item[descrição] definição completa do que representa a sigla/abreviatura.
 \end{description}
 
 Por exemplo:
@@ -481,14 +467,14 @@ A inserção de uma sigla/abreviatura no texto é simples, e pode ser feita de t
 formas diferentes:
 
 \begin{minipage}[t]{.3\textwidth}%
-\begin{verbatim}
-\acrshort{CIC}
-\acrlong{CIC}
-\acrfull{CIC}
-\end{verbatim}
+	\begin{verbatim}
+	\acrshort{CIC}
+	\acrlong{CIC}
+	\acrfull{CIC}
+	\end{verbatim}
 \end{minipage}%
 \begin{minipage}[t]{.6\textwidth}%
-\acrshort{CIC}\\
-\acrlong{CIC}\\
-\acrfull{CIC}
+	\acrshort{CIC}\\
+	\acrlong{CIC}\\
+	\acrfull{CIC}
 \end{minipage}%
