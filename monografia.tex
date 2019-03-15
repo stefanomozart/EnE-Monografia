@@ -1,46 +1,39 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 % Classe do documento
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % Opções:
+%
 %  - Graduação: eletrica|redes|mecatronica|computacao
 %  - Pós-graduação: [qualificacao], mestrado|doutorado, ppgee|pgea|ppee
-
-% \documentclass[engenharia]{UnB-EnE}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[qualificacao,doutorado,ppgee]{UnB-EnE}%
 
-\usepackage{pdfpages}% incluir PDFs, usado no apêndice
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Informações do Trabalho
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Informações Requeridas
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \orientador{\prof \dr Adi Shamir}{Weizmann Institute}%
 \coorientador{\prof \dr Ivan Damg\aard}{Aarhus University}
 \coordenador[a]{\prof[a] \dr[a] Alexandra Boldyreva}{Georgia Tech}%
-\diamesano{13}{março}{2019}%
-
 \membrobanca{\prof \dr Yehuda Lindell}{Bar Ilan University}%
 \membrobanca{\dr Silvio Micali}{Massachusetts Institute of Technology}%
 
 \autor{Stefano M. P. C.}{Souza}%
-
 \titulo{UnB-EnE: Uma classe em LaTeX para textos do Departamento de Engenharia Elétrica}%
 
 \palavraschave{LaTeX, metodologia científica, trabalho de conclusão de curso}%
 \keywords{LaTeX, scientific method, thesis}%
 
-\newcommand{\unbene}{\texttt{UnB-EnE}}%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Texto
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Estrutura do Documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}%
-	\capitulo{exemplos/tex/1_Introducao}{Introdução}%
-	\capitulo{exemplos/tex/2_UnB-EnE}{A Classe \unbene}%
-	\capitulo{exemplos/tex/3_TCC}{Trabalho de Conclusão de Curso}%
-	\capitulo{exemplos/tex/4_Apresentacao}{Apresentações}%
+	\capitulo{1_Introducao}{Introdução}%
+	\capitulo{2_UnB-EnE}{A Classe \unbene}%
+	\capitulo{3_TCC}{Trabalho de Conclusão de Curso}%
+	\capitulo{4_Apresentacao}{Apresentações}%
 	
-	\apendice{exemplos/anexos/Apendice_Fichamento}{Fichamento de Artigo Científico}%
-\anexo{exemplos/anexos/Anexo1}{Documentação Original \unbcic\ (parcial)}%
+	\apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
+	\anexo{Anexo1}{Documentação Original \unbcic\ (parcial)}%
 \end{document}%
