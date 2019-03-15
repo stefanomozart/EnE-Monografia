@@ -1,3 +1,16 @@
+%% ------------------------------------------------------------------------------------------
+%% -- copyright 2019 - Stefano Mozart (stefanomozart@ieee.org)
+%% -- 
+%% -- Classe UnB-EnE.cls define estilos e estruturas para monografias, dissertações e teses
+%% -- do Departamento de Engenharia Elétrica, Faculdade de Tecnologia, Universidade de 
+%% -- Brasília.
+%% --
+%% -- Este traballho é uma extensão/alteração da classe UnB-CiC.cls (https://github.com/UnB-CIC/Monografia)
+%% -- distribuído sob licença Creative Commons Atribuição-CompartilhaIgual 4.0 Internacional
+%% -- [http://creativecommons.org/licenses/by-sa/4.0/deed.pt_BR].
+%% --
+%% ------------------------------------------------------------------------------------------
+
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
 \ProvidesClass{UnB-EnE}[2014/07/10 Classe para trabalhos do Departamento de Eng. El. FT/UnB]
 
@@ -30,41 +43,41 @@
 % -- Opções de curso/programa
 \newif\if@posgraduacao\@posgraduacaofalse%
 \DeclareOptionX{eletrica}{%
-    \gdef\@nomecurso{Bacharelado em Engenharia El\'etrica}%
-    \gdef\@mododeescrita{Monografia}%
+	\gdef\@nomecurso{Bacharelado em Engenharia El\'etrica}%
+	\gdef\@mododeescrita{Monografia}%
 }%
 
 \DeclareOptionX{redes}{%
-    \gdef\@nomecurso{Bacharelado em Engenharia de Redes de Comunica\c{c}\~oes}%
-    \gdef\@mododeescrita{Monografia}%
+	\gdef\@nomecurso{Bacharelado em Engenharia de Redes de Comunica\c{c}\~oes}%
+	\gdef\@mododeescrita{Monografia}%
 }%
 
 \DeclareOptionX{mecatronica}{%
-    \gdef\@nomecurso{Bacharelado em Engenharia Mecatr\^onica}%
-    \gdef\@mododeescrita{Monografia}%
+	\gdef\@nomecurso{Bacharelado em Engenharia Mecatr\^onica}%
+	\gdef\@mododeescrita{Monografia}%
 }%
 
 \DeclareOptionX{computacao}{%
-    \gdef\@nomecurso{Bacharelado em Engenharia de Computa\c{c}\~ao}%
-    \gdef\@mododeescrita{Monografia}%
+	\gdef\@nomecurso{Bacharelado em Engenharia de Computa\c{c}\~ao}%
+	\gdef\@mododeescrita{Monografia}%
 }%
 
 \def\@nomecurso{\@empty}%
-\def\@assunto{Monografia (\@ifundefined{XeTeXversion}{Gradua\c{c}\~ao}{Graduação})}
+\def\@assunto{Monografia (\@ifundefined{XeTeXversion}{Gradua\c{c}\~ao}{Graduação})}%
 \DeclareOptionX{mestrado}{
 	\@posgraduacaotrue%
-    \gdef\@nomecurso{Mestrado}%
-    \gdef\@assunto{Disserta\c{c}\~ao (Mestrado)}%
-    \gdef\@mododeescrita{Disserta\c{c}\~ao}%
+	\gdef\@nomecurso{Mestrado}%
+	\gdef\@assunto{Disserta\c{c}\~ao (Mestrado)}%
+	\gdef\@mododeescrita{Disserta\c{c}\~ao}%
 }%
 
 \newif\if@doutorado\@doutoradofalse%
 \DeclareOptionX{doutorado}{%
 	\@posgraduacaotrue
 	\@doutoradotrue%
-    \gdef\@nomecurso{Doutorado}%
-    \gdef\@assunto{Tese de Doutorado}%
-    \gdef\@mododeescrita{Tese}
+	\gdef\@nomecurso{Doutorado}%
+	\gdef\@assunto{Tese de Doutorado}%
+	\gdef\@mododeescrita{Tese}
 }%
 
 \DeclareOptionX{ppgee}{%
@@ -141,21 +154,22 @@
 
 \if@draftthesis%
 	\PassOptionsToPackage{headheight=13pt,margin={2cm,1.5cm}}{geometry}%
-    \@singlespacingfalse \@onehalfspacingtrue % força onehalfspacing
-    \@defifundef{@fontsize}{11pt}%
+	\@singlespacingfalse \@onehalfspacingtrue % força onehalfspacing
+	\@defifundef{@fontsize}{11pt}%
 \else%
 	\PassOptionsToPackage{headheight=15pt,vmargin={3cm,2cm}}{geometry}%
 	\if@ForScreenView%
 		\PassOptionsToPackage{hmargin={2.5cm,2.5cm}}{geometry}%
-    \else%
+	\else%
 		\PassOptionsToPackage{hmargin={3cm,2cm}}{geometry}%
-    \fi%
-    \@defifundef{@fontsize}{12pt}
+	\fi%
+	\@defifundef{@fontsize}{12pt}
 \fi%
 
-\LoadClass[\@fontsize]{report}
+\LoadClass[\@fontsize]{report}%
 
 %% ------------------------------------------------------------------------------------------
+%% --
 %% -- Carrega pacotes requeridos 
 %% ------------------------------------------------------------------------------------------
 \RequirePackage[brazil,american]{babel}% idiomas
@@ -205,7 +219,10 @@
 \RequirePackage{atbegshi}%
 \newcounter{TotPaginas}%
 
+\usepackage{pdfpages}% incluir PDFs, usado no apêndice
+
 %% ------------------------------------------------------------------------------------------
+%% --
 %% -- Adaptação da classe-base 
 %% ------------------------------------------------------------------------------------------
 \newcommand{\chapterformat}{% formatação de título de capítulos
@@ -218,314 +235,338 @@
 		{Nao pode haver titulos antes do comando \protect\pretextual}
 }
 
-%suporte para alinhamento e formatação configurável
+% -- suporte para alinhamento e formatação configurável
 \def\@makechapterhead#1{%
-  \vspace*{50\p@}%
-  {\parindent \z@ \chapteralign \normalfont
-    \ifnum \c@secnumdepth >\m@ne
-        \huge\bfseries \@chapapp\space \thechapter
-        \par\nobreak
-        \vskip 20\p@
-    \fi
-    \interlinepenalty\@M
-    \chapterformat #1\par\nobreak
-    \vskip 40\p@
-  }}
+	\vspace*{50\p@}%
+	{%
+		\parindent \z@ \chapteralign \normalfont%
+		\ifnum \c@secnumdepth >\m@ne%
+			\huge\bfseries \thechapter%
+			%\huge\bfseries \@chapapp\space \thechapter
+			%\par\nobreak
+			%\vskip 20\p@
+		\fi%
+		\interlinepenalty\@M%
+		\chapterformat #1\par\nobreak%
+		\vskip 40\p@%
+	}%
+}%
 
 \def\@makeschapterhead#1{%
-  \vspace*{50\p@}%
-  {\parindent \z@ \chapteralign
-    \normalfont
-    \interlinepenalty\@M
-    \chapterformat  #1\par\nobreak
-    \vskip 40\p@
-  }}
+	\vspace*{50\p@}%
+	{%
+		\parindent \z@ \chapteralign%
+		\normalfont%
+		\interlinepenalty\@M%
+		\chapterformat	#1\par\nobreak%
+		\vskip 40\p@%
+	}%
+}%
 
-%tira \MakeUppercase forçado nos cabeçalhos
-\let\old@MakeUppercase\MakeUppercase
-\let\old@markboth\markboth
-\def\markboth#1#2{\def\MakeUppercase##1{##1}\old@markboth{#1}{#2}\let\MakeUppercase\old@MakeUppercase}
-\let\old@markright\markright
-\def\markright#1{\def\MakeUppercase##1{##1}\old@markright{#1}\let\MakeUppercase\old@MakeUppercase}
+% -- Retira \MakeUppercase forçado nos cabeçalhos
+\let\old@MakeUppercase\MakeUppercase%
+\let\old@markboth\markboth%
+\def\markboth#1#2{\def\MakeUppercase##1{##1}\old@markboth{#1}{#2}\let\MakeUppercase\old@MakeUppercase}%
+\let\old@markright\markright%
+\def\markright#1{\def\MakeUppercase##1{##1}\old@markright{#1}\let\MakeUppercase\old@MakeUppercase}%
 
-%evita órfãs/viúvas e quebras de nota de rodapé
-\clubpenalty=9999
-\widowpenalty=9999
-\interfootnotelinepenalty=5000
-\raggedbottom
+% -- Evita órfãs/viúvas e quebras de nota de rodapé
+\clubpenalty=9999%
+\widowpenalty=9999%
+\interfootnotelinepenalty=5000%
+\raggedbottom%
 
-%aproxima itens de lista
-\def\changeitemsep{\setlength{\itemsep}{.5\itemsep}}
-\let\old@enumerate=\enumerate
-\def\enumerate{\old@enumerate%
-\changeitemsep}
-\let\old@itemize=\itemize
-\def\itemize{\old@itemize%
-\changeitemsep}
+% -- Aproxima itens em ambientes lista
+\def\changeitemsep{%
+	\setlength{\itemsep}{.5\itemsep}%
+}%
+\let\old@enumerate=\enumerate%
+\def\enumerate{%
+	\old@enumerate%
+	\changeitemsep%
+}%
+\let\old@itemize=\itemize%
+\def\itemize{%
+	\old@itemize%
+	\changeitemsep%
+}%
 
-%espaçamento entre linhas de verse, quote e quotation
-%deve ser simples e com fonte menor
-\let\old@quote\quote
-\let\old@endquote\endquote
-\renewenvironment*{quote}
-	{\old@quote\begin{singlespace}\small}
-	{\end{singlespace}\old@endquote}
+% -- Espaçamento entre linhas de verse, quote e quotation deve ser simples e com fonte menor
+\let\old@quote\quote%
+\let\old@endquote\endquote%
+\renewenvironment*{quote}%
+	{\old@quote\begin{singlespace}\small}%
+	{\end{singlespace}\old@endquote}%
 
-\let\old@quotation\quotation
-\let\old@endquotation\endquotation
-\renewenvironment*{quotation}
-	{\old@quotation\begin{singlespace}\small}
-	{\end{singlespace}\old@endquotation}
+\let\old@quotation\quotation%
+\let\old@endquotation\endquotation%
+\renewenvironment*{quotation}%
+	{\old@quotation\begin{singlespace}\small}%
+	{\end{singlespace}\old@endquotation}%
 
-\let\old@verse\verse
-\let\old@endverse\endverse
-\renewenvironment*{verse}
-	{\old@verse\begin{singlespace}\small}
-	{\end{singlespace}\old@endverse}
+\let\old@verse\verse%
+\let\old@endverse\endverse%
+\renewenvironment*{verse}%
+	{\old@verse\begin{singlespace}\small}%
+	{\end{singlespace}\old@endverse}%
 
-%novo ambiente definition
-\newcommand{\definitioname}{Defini\c{c}\~ao}
-\newcounter{definition}
-\newenvironment{definition}
-	{\refstepcounter{definition}%
-	\let\old@fboxsep\fboxsep\setlength{\fboxsep}{1em}%
-	\vskip.5\fboxsep\breakbox%
-	\noindent\textbf{\definitioname~\arabic{definition}\ \ }}
-	{\endbreakbox\vskip.5\fboxsep%
-	\setlength{\fboxsep}{\old@fboxsep}}
+% -- Novo ambiente definition
+\newcommand{\definitioname}{Defini\c{c}\~ao}%
+\newcounter{definition}%
+\newenvironment{definition}%
+	{
+		\refstepcounter{definition}%
+		\let\old@fboxsep\fboxsep\setlength{\fboxsep}{1em}%
+		\vskip.5\fboxsep\breakbox%
+		\noindent\textbf{\definitioname~\arabic{definition}\ \ }%
+	}%
+	{%
+		\endbreakbox\vskip.5\fboxsep%
+		\setlength{\fboxsep}{\old@fboxsep}%
+	}%
 
 
-%table figures automáticas no ambiente #1
-\newcommand{\SetTableFigures}[1]{
-	\expandafter\let\csname old@#1\expandafter\endcsname\csname #1\endcsname
-	\expandafter\let\csname old@end#1\expandafter\endcsname\csname end#1\endcsname
-	\renewenvironment{#1}
-	{\begingroup\@tablefigures\csname old@#1\endcsname}
-	{\csname old@end#1\endcsname\endgroup}
-}
+% -- Table figures automáticas no ambiente #1
+\newcommand{\SetTableFigures}[1]{%
+	\expandafter\let\csname old@#1\expandafter\endcsname\csname #1\endcsname%
+	\expandafter\let\csname old@end#1\expandafter\endcsname\csname end#1\endcsname%
+	\renewenvironment{#1}%
+	{\begingroup\@tablefigures\csname old@#1\endcsname}%
+	{\csname old@end#1\endcsname\endgroup}%
+}%
 
-%adiciona item ao sumario
-\def\addtocchapter#1{
-	\cleardoublepage
-	\phantomsection %ajusta referencia hyperref
-	\addcontentsline{toc}{chapter}{#1}
-}
+% -- Adiciona item ao sumario
+\def\addtocchapter#1{%
+	\cleardoublepage%
+	\phantomsection% ajusta referencia hyperref
+	\addcontentsline{toc}{chapter}{#1}%
+}%
 
-%configura a seção de referências
+% -- Configura a seção de referências
 \expandafter\let\expandafter\@bibliography\csname bibliography\endcsname%
 \renewcommand{\bibliography}[1]{%
-	%renomeia a seção após influência maligna do Babel
-	\renewcommand*{\bibname}
-		{\@ifundefined{XeTeXversion}{Refer\^encias}{Referências}}
-	\addtocchapter{\bibname}
-	\singlespacing\@bibliography{#1}\defaultspacing}
+	% - renomeia a seção após influência maligna do Babel
+	\renewcommand*{\bibname}%
+		{\@ifundefined{XeTeXversion}{Refer\^encias}{Referências}}%
+	\addtocchapter{\bibname}%
+	\singlespacing\@bibliography{#1}\defaultspacing%
+}%
 
-%maketitle para gerar as páginas iniciais
+% -- Novo maketitle, para gerar as páginas iniciais
 \def\maketitle{%
-	\if@ForScreenView\relax\else\capa\fi
+	\if@ForScreenView\relax\else\capa\fi%
 	\pretextual\folharosto%
-    \if@posgraduacao%
+	\if@posgraduacao%
 		\if@qualificacao%
 		\else%
 			\newpage\thispagestyle{empty}%
-			\begin{picture}(0,0)\put(-90,-747){\includegraphics{doc/BDM.pdf}}\end{picture}%
-			% \includepdf (comando adequado neste caso) precisa ser reconfigurado em modo pretextual, \includegraphics é uma solução rápida, mas ara isso usa valores arbitrários para posicionar a página.
+			% -- TODO: flexibilizar path para pasta de anexos
+			\begin{picture}(0,0)\put(-90,-747){\includegraphics{anexos/BDM.pdf}}\end{picture}%
+			% \includepdf (comando adequado neste caso) precisa ser reconfigurado em modo pretextual, 
+			% \includegraphics é uma solução rápida, mas para isso usa valores arbitrários para posicionar a página.
 			\clearpage%
 		\fi%
 	\fi%
 	\newpage\folhaaprovacao%
-}
+}%
 
-%suporte hyperref para anexos
+% -- Adicionando suporte ao hyperref para anexos
 \ifhyperref{%
-	\def\Hy@annexstring{annex}
-	\let\HyOrg@anexos\anexos
+	\def\Hy@annexstring{annex}%
+	\let\HyOrg@anexos\anexos%
 	\def\anexos{%
 		\gdef\theHchapter{\Roman{chapter}}%
 		\xdef\Hy@chapapp{\Hy@annexstring}%
 		\HyOrg@anexos
-	}
-}{}
+	}%
+}{}%
 
-%%
-%% --- Macros/comandos auxiliares ---
-%%
-%%
-%% --- Macros/comandos auxiliares ---
-%%
-\def\prof{\@ifnextchar[{\@prof@}{\@prof}}
-\def\@prof#1{Prof.\ #1}
-\def\@prof@[#1]#2{Prof.a\ #2}
 
-\def\dr{\@ifnextchar[{\@dr@}{\@dr}}
-\def\@dr#1{Dr.\ #1}
-\def\@dr@[#1]#2{Dr.a\ #2}
-
-%%
-
-%%
-%% --- Páginas do trabalho ---
-%%
-
-\def\@lskipoffset#1{%quebra linha segundo referencia
+%% ------------------------------------------------------------------------------------------
+%% --
+%% -- Estrutura pré-textual
+%% ------------------------------------------------------------------------------------------
+\def\@lskipoffset#1{% quebra linha segundo referencia
 	\begingroup%
-		\newskip\len@lskipoffset%referência de espaçamento
+		\newskip\len@lskipoffset% referência de espaçamento
 		\setlength{\len@lskipoffset}{-.275\len@uadesch}%
 		\addtolength{\len@lskipoffset}{#1\len@uacaph}%
 		\\[\len@lskipoffset]%
 	\endgroup%
-}
-\newcommand*{\@logosize}{20}%tamanho da fonte utilizada (em pt)
-\newcommand{\@logo}[1][positivo_cor]{%imprime o logo da UnB
+}%
+\newcommand*{\@logosize}{20}% tamanho da fonte utilizada (em pt)
+\newcommand{\@logo}[1][positivo_cor]{% imprime o logo da UnB
 	\begingroup%
-		\newskip\len@brasiliaw%largura da palavra Brasilia
-		\newskip\len@uadesch%URW Arial descender height
-		\newskip\len@uacaph%URW Arial cap height
-		%
-		\begin{spacing}{0}%tira espaço entre linhas
-        \@ifundefined{XeTeXversion}
-	{\fontfamily{\fontelogo}}%
+		\newskip\len@brasiliaw%vlargura da palavra Brasilia
+		\newskip\len@uadesch% URW Arial descender height
+		\newskip\len@uacaph% URW Arial cap height
+		\begin{spacing}{0}% tira espaço entre linhas
+		\@ifundefined{XeTeXversion}%
+			{\fontfamily{\fontelogo}}%
 			{\fontspec{\fontelogo}}%
 		\fontsize{\@logosize}{0}\bfseries\selectfont%
-		\settodepth{\len@uadesch}{jgpy}\settoheight{\len@uacaph}{B}%desc & cap heights
+		\settodepth{\len@uadesch}{jgpy}\settoheight{\len@uacaph}{B}% desc & cap heights
 		\settowidth{\len@brasiliaw}{Bras\'ilia}%
-		\addtolength{\len@brasiliaw}{-.105em}%ajusta pequeno espaço em branco antes do B desta fonte
-		\includegraphics[width=\len@brasiliaw]{#1}\\[.63\len@uacaph]%logo com a largura da palavra Brasilia
+		\addtolength{\len@brasiliaw}{-.105em}% ajusta pequeno espaço em branco antes do B desta fonte
+		\includegraphics[width=\len@brasiliaw]{#1}\\[.63\len@uacaph]% logo com a largura da palavra Brasilia
 		\@universidade\@lskipoffset{.5}%
 		\@textscale{.5}{\@faculdade}\@lskipoffset{.25}%
 		\@textscale{.5}{\@departamento}%
 		\end{spacing}%
-	\endgroup
-}
+	\endgroup%
+}%
 
 \newcommand\pretextual{%
-	\renewcommand{\chapteralign}{\centering}
-    \renewcommand{\chapterformat}{\Huge \bfseries \thispagestyle{\style@pretextual}}
-	\cleardoublepage\pagenumbering{roman}
-	\@pagestyle{\style@pretextual}
-	\AtBeginShipout{\stepcounter{TotPaginas}}
-}
+	\renewcommand{\chapteralign}{\centering}%
+	\renewcommand{\chapterformat}{\Huge \bfseries \thispagestyle{\style@pretextual}}%
+	\cleardoublepage\pagenumbering{roman}%
+	\@pagestyle{\style@pretextual}%
+	\AtBeginShipout{\stepcounter{TotPaginas}}%
+}%
 
 \newcommand\textual{%
-	\renewcommand{\chapteralign}{\raggedright}
-    \renewcommand{\chapterformat}{\Huge \bfseries \thispagestyle{\style@chapter}}
-	\cleardoublepage\pagenumbering{arabic}
-	\@pagestyle{\style@textual}
-}
+	\renewcommand{\chapteralign}{\raggedright}%
+	\renewcommand{\chapterformat}{\Huge \bfseries \thispagestyle{\style@chapter}}%
+	\cleardoublepage\pagenumbering{arabic}%
+	\@pagestyle{\style@textual}%
+}%
 
 \newcommand\postextual{%
-	\renewcommand{\chapteralign}{\centering}
+	\renewcommand{\chapteralign}{\centering}%
 
-	%lining figures em section e subsection
-	\renewcommand\thesection{\thechapter.\protect\textlinf{\arabic{section}}}
-	\renewcommand\thesubsection{\thesection.\protect\textlinf{\arabic{subsection}}}
-	\renewcommand\thesubsubsection{\thesubsection.\protect\textlinf{\arabic{subsubsection}}}
+	% lining figures em section e subsection
+	\renewcommand\thesection{\thechapter.\protect\textlinf{\arabic{section}}}%
+	\renewcommand\thesubsection{\thesection.\protect\textlinf{\arabic{subsection}}}%
+	\renewcommand\thesubsubsection{\thesubsection.\protect\textlinf{\arabic{subsubsection}}}%
 
-	%evita problema com bookmarksnumbered=true
-	\pdfstringdefDisableCommands{\renewcommand*{\textlinf}[1]{##1}}
-}
+	% evita problema com bookmarksnumbered=true
+	\pdfstringdefDisableCommands{\renewcommand*{\textlinf}[1]{##1}}%
+}%
 
-%definição do diretório para os fontes
-\newcommand{\texpath}[1]{%
-	\ifx&#1&%
-		\gdef\@texpath{#1}%
-	\else
-		\gdef\@texpath{exemplos/tex}%
-	\fi
-}
 
-%definição titulo e subtitulo do trabalho
+%% ------------------------------------------------------------------------------------------
+%% --
+%% -- Macros/comandos auxiliares 
+%% ------------------------------------------------------------------------------------------
+\def\prof{\@ifnextchar[{\@prof@}{\@prof}}
+\def\@prof#1{Prof.\ #1}
+\def\@prof@[#1]#2{Prof.a\ #2}
+
+\def\dr{\@ifnextchar[{\@dr@}{\@dr}}%
+\def\@dr#1{Dr.\ #1}%
+\def\@dr@[#1]#2{Dr.a\ #2}%
+
+% -- Definição do diretório para os fontes
+\def\@texpath{tex}%
+
+% TODO: flexibilizar o path para o diretório, por meio de parâmetro
+%
+%\newcommand{\texpath}[1]{%
+%	\ifx&#1&%
+%		\gdef\@texpath{#1}%
+%	\else%
+%		\gdef\@texpath{exemplos/tex}%
+%	\fi%
+%}%
+
+% -- Definição titulo e subtitulo do trabalho
 \renewcommand*{\title}{\@dblarg\set@title}%
 \newcommand*{\set@title}[2][]{%
-	\xdef\@title{#1}
-	\xdef\@maintitle{#2}
-}
-\newcommand*{\subtitle}{\@dblarg\set@subtitle}
+	\xdef\@title{#1}%
+	\xdef\@maintitle{#2}%
+}%
+\newcommand*{\subtitle}{\@dblarg\set@subtitle}%
 \newcommand*{\set@subtitle}[2][]{%
-	\gdef\@subtitle{#2}
-	\xdef\@title{\expandafter{\@title}: #1}
-}
+	\gdef\@subtitle{#2}%
+	\xdef\@title{\expandafter{\@title}: #1}%
+}%
 
-%definicao de  palavras-chave - para cip e resumo/abstract
-\newcommand*{\keywords}{\@dblarg\set@keywords}
+% -- Definicao de palavras-chave - para cip e resumo/abstract
+\newcommand*{\keywords}{\@dblarg\set@keywords}%
 \newcommand*{\set@keywords}[2][]{%
-	\gdef\@keywords{#1}
-	\gdef\@@keywords{#2}
-}
-\newcommand*{\palavraschave}{\@dblarg\set@palavraschave}
+	\gdef\@keywords{#1}%
+	\gdef\@@keywords{#2}%
+}%
+\newcommand*{\palavraschave}{\@dblarg\set@palavraschave}%
 \newcommand*{\set@palavraschave}[2][]{%
-	\gdef\@palavraschave{#1}
-	\gdef\@@palavraschave{#2}
-}
+	\gdef\@palavraschave{#1}%
+	\gdef\@@palavraschave{#2}%
+}%
 
-%data do trabalho
-\def\diamesano#1#2#3{\def\@dia{#1}%
-                     \def\@mes{#2}%
-                     \def\@ano{#3}}
+% -- Data do trabalho
+\def\diamesano#1#2#3{
+	\def\@dia{#1}%
+	\def\@mes{#2}%
+	\def\@ano{#3}%
+}%
 
-%definicao do autor
-\newcommand{\autor}[2]{
-	\def\primeiroautor{#1\ #2}% Único autor em ordem Prenome Nome
-	\def\primeiroautorinv{#2,\ #1}% Único autor em ordem Nome, Prenome
-	\author{\primeiroautor}
-}
+% -- Definicao do autor
+\newcommand{\autor}[2]{%
+	\def\primeiroautor{#1\ #2}% único autor em ordem Prenome Nome
+	\def\primeiroautorinv{#2,\ #1}% único autor em ordem Nome, Prenome
+	\author{\primeiroautor}%
+}%
 
-%definicao do coautor
-\newcommand{\coautor}[2]{
-	\if@posgraduacao
-		\ClassError{UnB-EnE}
-			{Comando \protect\coautor\space invalido para mestrado}
-			{Apenas trabalhos de graduacao podem ter mais de um autor}
-	\fi
-	\@ifundefined{primeiroautor}{
-		\ClassError{UnB-EnE}
-			{Comando \protect\autor\space deve ser chamado antes de \protect\coautor\space}
-			{O autor principal deve ser definido antes do secundario}
+% -- Definicao do coautor
+\newcommand{\coautor}[2]{%
+	\if@posgraduacao%
+		\ClassError{UnB-EnE}%
+			{Comando \protect\coautor\space invalido para mestrado}%
+			{Apenas trabalhos de graduacao podem ter mais de um autor}%
+	\fi%
+	\@ifundefined{primeiroautor}{%
+		\ClassError{UnB-EnE}%
+			{Comando \protect\autor\space deve ser chamado antes de \protect\coautor\space}%
+			{O autor principal deve ser definido antes do secundario}%
 	}{}
-	\def\segundoautor{#1\ #2}% Autor secundário em ordem Prenome Nome
-	\def\segundoautorinv{#2,\ #1}% Autor secundário em ordem Nome, Prenome
+	\def\segundoautor{#1\ #2}% autor secundário em ordem Prenome Nome
+	\def\segundoautorinv{#2,\ #1}% autor secundário em ordem Nome, Prenome
 	\author{\primeiroautor\\ \segundoautor}
 }
 
-%definicao do coordenador do curso
+% -- Definicao do coordenador do curso
 \def\coordenador{\@ifnextchar[%]
-              {\at@coorda}%Se primeiro argumento opcional chama esta
-              {\at@coordo}}%senão chama esta rotina
+	{\at@coorda}% se primeiro argumento opcional chama esta
+	{\at@coordo}% se não chama esta rotina
+}%
 
-\def\at@coorda[#1]#2#3{\def\@sexocoordenador{Coordenadora}%
-                        \def\@nomecoordenador{#2}%
-                        \def\@filicoordenador{#3}}
+\def\at@coorda[#1]#2#3{
+	\def\@sexocoordenador{Coordenadora}%
+	\def\@nomecoordenador{#2}%
+	\def\@filicoordenador{#3}%
+}%
 
 \def\at@coordo#1#2{\def\@sexocoordenador{Coordenador}%
-                        \def\@nomecoordenador{#1}%
-                        \def\@filicoordenador{#2}}
+	\def\@nomecoordenador{#1}%
+	\def\@filicoordenador{#2}
+}%
 
 %definicao do orientador
 \def\orientador{\@ifnextchar[%]
-              {\at@orienta}%Se primeiro argumento opcional chama esta
-              {\at@oriento}}%senao chama esta rotina
+	{\at@orienta}% se primeiro argumento opcional chama esta
+	{\at@oriento}}% senao chama esta rotina
 
 \def\at@orienta[#1]#2#3{\def\@sexoorientador{Orientadora}%
-                        \def\@nomeorientador{#2}%
-                        \def\@filiorientador{#3}}
+						\def\@nomeorientador{#2}%
+						\def\@filiorientador{#3}}
 
 \def\at@oriento#1#2{\def\@sexoorientador{Orientador}%
-                        \def\@nomeorientador{#1}%
-                        \def\@filiorientador{#2}}
+						\def\@nomeorientador{#1}%
+						\def\@filiorientador{#2}}
 
 %definicao do coorientador
 \newif\if@coorientador
 \def\coorientador{\@coorientadortrue \@ifnextchar[%]
-              {\at@coorienta}%Se primeiro argumento opcional chama esta
-              {\at@cooriento}}%senao chama esta rotina
+				{\at@coorienta}%Se primeiro argumento opcional chama esta
+				{\at@cooriento}}%senao chama esta rotina
 
 \def\at@coorienta[#1]#2#3{\def\@sexocoorientador{Coorientadora}%
-                        \def\@nomecoorientador{#2}%
-                        \def\@filicoorientador{#3}}%
+						\def\@nomecoorientador{#2}%
+						\def\@filicoorientador{#3}}%
 
 \def\at@cooriento#1#2{\def\@sexocoorientador{Coorientador}%
-                        \def\@nomecoorientador{#1}%
-                        \def\@filicoorientador{#2}}%
+						\def\@nomecoorientador{#1}%
+						\def\@filicoorientador{#2}}%
 
 % definicao da banca
 % o orientador é sempre o primeiro membro da banca
@@ -552,20 +593,20 @@
 			\ifx\@nomequatro\undefined
 				\@defquartomembro{#1}{#2}
 			\else
-                \if@doutorado%
-                    \if@quintomembro%
-                        \ClassError{UnB-EnE}%
-                            {A banca deve ter no maximo 5 membros}%
-                            {Lembre-se que orientador e coorientador ja fazem parte da banca}%
-                    \else
-                        \@defquintomembro{#1}{#2}%
-                        \@quintomembrotrue%
-                    \fi%
-                \else%
-                    \ClassError{UnB-EnE}%
-                        {A banca deve ter 3 ou 4 membros}%
-                        {Lembre-se que orientador e coorientador ja fazem parte da banca}%
-                \fi%
+				\if@doutorado%
+					\if@quintomembro%
+						\ClassError{UnB-EnE}%
+							{A banca deve ter no maximo 5 membros}%
+							{Lembre-se que orientador e coorientador ja fazem parte da banca}%
+					\else
+						\@defquintomembro{#1}{#2}%
+						\@quintomembrotrue%
+					\fi%
+				\else%
+					\ClassError{UnB-EnE}%
+						{A banca deve ter 3 ou 4 membros}%
+						{Lembre-se que orientador e coorientador ja fazem parte da banca}%
+				\fi%
 			\fi
 		\fi
 	\fi
@@ -595,7 +636,7 @@
 	\pdfbookmark{Resumo}{resumo}%
 	\chapter*{Resumo}}%
 		{\vskip 15pt\noindent\textbf{Palavras-chave:}\ \@@palavraschave%
-    \end{paginatitulo}}
+	\end{paginatitulo}}
 
 \newenvironment{dedicatoria}
 	{\begin{paginatitulo}%
@@ -612,20 +653,20 @@
 }
 
 \newcommand\capa{
-  \begin{paginatitulo}%
+	\begin{paginatitulo}%
 	\onehalfspacing%
-        \begin{center}%
-             \@logo[contorno_preto]
-             \null\vfill%
-             \@printfulltitle%
-             \vfill%
-             {\large \@author}%
-             \vfill%
-            {\large \@cidade}\\
-            {\large \@ano}%
-       \end{center}%
+		\begin{center}%
+			 \@logo[contorno_preto]
+			 \null\vfill%
+			 \@printfulltitle%
+			 \vfill%
+			 {\large \@author}%
+			 \vfill%
+			{\large \@cidade}\\
+			{\large \@ano}%
+		\end{center}%
 	\defaultspacing%
-  \end{paginatitulo}%
+	\end{paginatitulo}%
 }
 
 \newcommand\folharosto{%
@@ -720,7 +761,7 @@
 	\if@PosTextualNaoIncluso\@conteudoPosTextual\fi%
 
 	\addtocounter{page}{-1}%decrementa para depois . . .
-    \ifhyperref{%
+	\ifhyperref{%
 		\immediate\write\@mainaux{%
 			\string\newlabel{TotPaginas}{{\arabic{TotPaginas}}{\thepage}{}{page.\thepage}{}}%
 		}%
@@ -736,16 +777,16 @@
 	%define propriedades do PDF e carrega pacotes auxiliares
 	\@ifpackageloaded{hyperref}{
 	\hypersetup{
-            pdftitle=\@title,
-            pdfauthor=\@author,
-            pdfsubject=\@assunto,
-            pdfkeywords=\@palavraschave}
+			pdftitle=\@title,
+			pdfauthor=\@author,
+			pdfsubject=\@assunto,
+			pdfkeywords=\@palavraschave}
 		\@ifpackageloaded{natbib}{
 			%compatibilidade entre natbib e hyperref
 		\RequirePackage{hypernat}
 		}{}
 		%posiciona melhor os links para captions
-        \RequirePackage[all]{hypcap}
+		\RequirePackage[all]{hypcap}
 	}{
 		\RequirePackage{nohyperref} %dummy macros for hyperref
 		\RequirePackage{url} %permite quebra de linha em URLs
@@ -836,21 +877,21 @@
 
 	% Controle de membros da banca
 	\ifx\@nometres\undefined%
-        \ClassError{UnB-EnE}%
-            {A banca deve ter pelo menos 3 membros}%
-            {Lembre-se que orientador e coorientador ja fazem parte da banca}%
-    \fi%
-    \if@doutorado%
+		\ClassError{UnB-EnE}%
+			{A banca deve ter pelo menos 3 membros}%
+			{Lembre-se que orientador e coorientador ja fazem parte da banca}%
+	\fi%
+	\if@doutorado%
 		\if@qualificacao%
 		\else%
-	        \if@quintomembro%
-	        \else%
-	            \ClassError{UnB-EnE}%
-	                {A banca deve ter 5 membros}%
-	                {Lembre-se que orientador e coorientador ja fazem parte da banca}%%
-	        \fi%
-	    \fi%
-    \fi%
+			\if@quintomembro%
+			\else%
+				\ClassError{UnB-EnE}%
+					{A banca deve ter 5 membros}%
+					{Lembre-se que orientador e coorientador ja fazem parte da banca}%%
+			\fi%
+		\fi%
+	\fi%
 
 	\@conteudoPreTextual%
 }
@@ -895,8 +936,8 @@
 	\addtocounter{apendice}{1}%
 	\ifnum\value{apendice}<2%
 		\if@PosTextualNaoIncluso\@conteudoPosTextual\fi%
-	    \appendix%
-	    \addcontentsline{toc}{chapter}{\appendixname}%
+		\appendix%
+		\addcontentsline{toc}{chapter}{\appendixname}%
 	\fi%
 	\capitulo{#1}{#2}%
 }%
@@ -909,7 +950,7 @@
 		\renewcommand{\appendixname}{Anexo}%
 		\ifnum\value{apendice}<1\appendix\fi%
 		\renewcommand{\thechapter}{\Roman{anexo}}%
-	    \addcontentsline{toc}{chapter}{\appendixname}%
+		\addcontentsline{toc}{chapter}{\appendixname}%
 	\fi%
 	\capitulo{#1}{#2}%
 }%
@@ -929,7 +970,7 @@
 	\selectlanguage{american}%
 	\@IncluirSecao{abstract}%
 	\selectlanguage{brazil}%
-    \selectbiblanguage{brazil}%
+	\selectbiblanguage{brazil}%
 	\@erroSeNaoExiste{exemplos/bibliografia.bib}%
 
 	\tableofcontents%
@@ -942,11 +983,10 @@
 
 \newcommand{\@conteudoPosTextual}{%
 	\@PosTextualNaoInclusofalse%
-    \postextual%
+	\postextual%
 	\bibliographystyle{babunsrt}%
-    \bibliography{bibliografia}%
+	\bibliography{bibliografia}%
 }%
-
 
 \newcommand{\sigla}[2]{\newacronym{#1}{#1}{#2}}%
 
@@ -970,6 +1010,7 @@
 		\end{center}%
 	\end{figure}%
 }%
+
 \newcommand{\figura}[5][!ht]{%
 	\figuraBib[#1]{#2}{#3}{}{#4}{#5}%
 }%
@@ -997,5 +1038,4 @@
 	\tabelaBib{#1}{}{#2}{#3}{#4}%
 }%
 
-
-\endinput
+\endinput%
