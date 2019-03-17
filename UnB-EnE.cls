@@ -13,8 +13,10 @@
 
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
 \ProvidesClass{UnB-EnE}[2014/07/10 Classe para trabalhos do Departamento de Eng. El. FT/UnB]
+\newcommand{\unbene}{\texttt{UnB-EnE}\space}%
 
 %% ------------------------------------------------------------------------------------------
+%% --
 %% -- Contextualização do departamento 
 %% ------------------------------------------------------------------------------------------
 \def\@departamento{Departamento de Engenharia El\'etrica}
@@ -27,6 +29,7 @@
 \def\@pais{Brasil}
 
 %% ------------------------------------------------------------------------------------------
+%% --
 %% -- Definição de opções 
 %% ------------------------------------------------------------------------------------------
 \RequirePackage{xkeyval}
@@ -131,6 +134,7 @@
 \DeclareOptionX{draft}{\@draftthesistrue}
 
 %% ------------------------------------------------------------------------------------------
+%% -- 
 %% -- Processamento de opções e classe-base 
 %% ------------------------------------------------------------------------------------------
 
@@ -172,6 +176,7 @@
 %% --
 %% -- Carrega pacotes requeridos 
 %% ------------------------------------------------------------------------------------------
+
 \RequirePackage[brazil,american]{babel}% idiomas
 \RequirePackage[fixlanguage]{babelbib}% idioma das referências
 \RequirePackage[utf8]{inputenc}% arquivos na codificação UTF-8
@@ -193,12 +198,13 @@
 	\def\@textscale#1#2{{\addfontfeatures{Scale=#1}#2}}%
 }%
 
-% -- TODO: substituir a instrução fixa pro parâmetro
+% -- TODO: substituir a instrução fixa por um parâmetro
+%\def\@imgpath{{.}{img/}}
 \RequirePackage{graphicx}\graphicspath{{.}{img/}}%
 \RequirePackage{boites}%
 \RequirePackage[a4paper,includefoot]{geometry}%
 
-% define o espaçamento pelo setspace
+% -- Define o espaçamento pelo setspace
 \if@baselineskip\else%
 	\RequirePackage{setspace}%
 \fi%
@@ -235,23 +241,21 @@
 		{Nao pode haver titulos antes do comando \protect\pretextual}
 }
 
-% -- suporte para alinhamento e formatação configurável
+% -- Suporte para alinhamento e formatação configurável de títulos
 \def\@makechapterhead#1{%
 	\vspace*{50\p@}%
 	{%
 		\parindent \z@ \chapteralign \normalfont%
 		\ifnum \c@secnumdepth >\m@ne%
-			\huge\bfseries \thechapter%
-			%\huge\bfseries \@chapapp\space \thechapter
-			%\par\nobreak
-			%\vskip 20\p@
+			\space \huge\bfseries \thechapter%
+			\hskip 20\p@
 		\fi%
 		\interlinepenalty\@M%
 		\chapterformat #1\par\nobreak%
 		\vskip 40\p@%
 	}%
 }%
-
+% -- Títulos do elementos pré-textuais
 \def\@makeschapterhead#1{%
 	\vspace*{50\p@}%
 	{%
@@ -381,7 +385,6 @@
 	}%
 }{}%
 
-
 %% ------------------------------------------------------------------------------------------
 %% --
 %% -- Estrutura pré-textual
@@ -446,8 +449,9 @@
 
 %% ------------------------------------------------------------------------------------------
 %% --
-%% -- Macros/comandos auxiliares 
+%% -- Macros relacionadas aos campos requeridos 
 %% ------------------------------------------------------------------------------------------
+
 \def\prof{\@ifnextchar[{\@prof@}{\@prof}}
 \def\@prof#1{Prof.\ #1}
 \def\@prof@[#1]#2{Prof.a\ #2}
@@ -456,20 +460,8 @@
 \def\@dr#1{Dr.\ #1}%
 \def\@dr@[#1]#2{Dr.a\ #2}%
 
-% -- Definição do diretório para os fontes
-\def\@texpath{tex}%
-
-% TODO: flexibilizar o path para o diretório, por meio de parâmetro
-%
-%\newcommand{\texpath}[1]{%
-%	\ifx&#1&%
-%		\gdef\@texpath{#1}%
-%	\else%
-%		\gdef\@texpath{exemplos/tex}%
-%	\fi%
-%}%
-
 % -- Definição titulo e subtitulo do trabalho
+\newcommand{\titulo}[1]{\title{#1}}%
 \renewcommand*{\title}{\@dblarg\set@title}%
 \newcommand*{\set@title}[2][]{%
 	\xdef\@title{#1}%
@@ -529,76 +521,80 @@
 	{\at@coorda}% se primeiro argumento opcional chama esta
 	{\at@coordo}% se não chama esta rotina
 }%
-
 \def\at@coorda[#1]#2#3{
 	\def\@sexocoordenador{Coordenadora}%
 	\def\@nomecoordenador{#2}%
 	\def\@filicoordenador{#3}%
 }%
-
 \def\at@coordo#1#2{\def\@sexocoordenador{Coordenador}%
 	\def\@nomecoordenador{#1}%
-	\def\@filicoordenador{#2}
+	\def\@filicoordenador{#2}%
 }%
 
-%definicao do orientador
+% -- Definicao do orientador
 \def\orientador{\@ifnextchar[%]
 	{\at@orienta}% se primeiro argumento opcional chama esta
-	{\at@oriento}}% senao chama esta rotina
-
+	{\at@oriento}% senao chama esta rotina
+}%
 \def\at@orienta[#1]#2#3{\def\@sexoorientador{Orientadora}%
-						\def\@nomeorientador{#2}%
-						\def\@filiorientador{#3}}
-
+	\def\@nomeorientador{#2}%
+	\def\@filiorientador{#3}%
+}%
 \def\at@oriento#1#2{\def\@sexoorientador{Orientador}%
-						\def\@nomeorientador{#1}%
-						\def\@filiorientador{#2}}
+	\def\@nomeorientador{#1}%
+	\def\@filiorientador{#2}%
+}%
 
-%definicao do coorientador
+% - Definicao do coorientador
 \newif\if@coorientador
-\def\coorientador{\@coorientadortrue \@ifnextchar[%]
-				{\at@coorienta}%Se primeiro argumento opcional chama esta
-				{\at@cooriento}}%senao chama esta rotina
-
+\def\coorientador{\@coorientadortrue\@ifnextchar[%]
+	{\at@coorienta}% se primeiro argumento opcional chama esta
+	{\at@cooriento}% senao chama esta rotina
+}%
 \def\at@coorienta[#1]#2#3{\def\@sexocoorientador{Coorientadora}%
-						\def\@nomecoorientador{#2}%
-						\def\@filicoorientador{#3}}%
-
+	\def\@nomecoorientador{#2}%
+	\def\@filicoorientador{#3}%
+}%
 \def\at@cooriento#1#2{\def\@sexocoorientador{Coorientador}%
-						\def\@nomecoorientador{#1}%
-						\def\@filicoorientador{#2}}%
+	\def\@nomecoorientador{#1}%
+	\def\@filicoorientador{#2}%
+}%
 
-% definicao da banca
+% -- Definicao da banca
 % o orientador é sempre o primeiro membro da banca
 % o coorientador, se existir, é o segundo membro da banca
 % o quarto membro é opcional
-\newif\if@quartomembro
-\def\@defsegundomembro#1#2{\def\@nomedois{#1}\def\@filidois{#2}}
-\def\@defterceiromembro#1#2{\def\@nometres{#1}\def\@filitres{#2}}
-\def\@defquartomembro#1#2{\def\@nomequatro{#1}\def\@filiquatro{#2}\@quartomembrotrue}
+\newif\if@quartomembro%
+\def\@defsegundomembro#1#2{\def\@nomedois{#1}\def\@filidois{#2}}%
+\def\@defterceiromembro#1#2{\def\@nometres{#1}\def\@filitres{#2}}%
+\def\@defquartomembro#1#2{%
+	\def\@nomequatro{#1}%
+	\def\@filiquatro{#2}%
+	\@quartomembrotrue%
+}%
 
-% Se for doutorado, há um quinto membro
+% -- Se for doutorado, há um quinto membro
 \newif\if@quintomembro\@quintomembrofalse%
 \if@doutorado%
 	\def\@defquintomembro#1#2{\def\@nomecinco{#1}\def\@filicinco{#2}}%
 \fi%
 
-\def\membrobanca#1#2{
-	\ifx\@nomedois\undefined
-		\@defsegundomembro{#1}{#2}
-	\else
-		\ifx\@nometres\undefined
-			\@defterceiromembro{#1}{#2}
-		\else
-			\ifx\@nomequatro\undefined
-				\@defquartomembro{#1}{#2}
-			\else
+\def\membrobanca#1#2{%
+	\ifx\@nomedois\undefined%
+		\@defsegundomembro{#1}{#2}%
+	\else%
+		\ifx\@nometres\undefined%
+			\@defterceiromembro{#1}{#2}%
+		\else%
+			\ifx\@nomequatro\undefined%
+				\@defquartomembro{#1}{#2}%
+			\else%
 				\if@doutorado%
 					\if@quintomembro%
 						\ClassError{UnB-EnE}%
 							{A banca deve ter no maximo 5 membros}%
 							{Lembre-se que orientador e coorientador ja fazem parte da banca}%
-					\else
+					\else%
 						\@defquintomembro{#1}{#2}%
 						\@quintomembrotrue%
 					\fi%
@@ -607,42 +603,54 @@
 						{A banca deve ter 3 ou 4 membros}%
 						{Lembre-se que orientador e coorientador ja fazem parte da banca}%
 				\fi%
-			\fi
-		\fi
-	\fi
-}
+			\fi%
+		\fi%
+	\fi%
+}%
 
-\newenvironment{paginatitulo}
-	{\cleardoublepage\thispagestyle{empty}}
-	{}
+\newenvironment{paginatitulo}%
+	{\cleardoublepage\thispagestyle{empty}}%
+	{}%
 
-\newenvironment{agradecimentos}
-	{\begin{paginatitulo}%
-	\pdfbookmark{Agradecimentos}{acknowledgements}%
-		\chapter*{Agradecimentos}}%
-	{\end{paginatitulo}}
+\newenvironment{agradecimentos}%
+	{%
+		\begin{paginatitulo}%
+		\pdfbookmark{Agradecimentos}{acknowledgements}%
+		\chapter*{Agradecimentos}%
+	}%
+	{\end{paginatitulo}}%
 
-\renewenvironment{abstract}
-	{\begin{paginatitulo}%
-	\begin{otherlanguage*}{english}
-	\pdfbookmark{Abstract}{abstract}%
-		\chapter*{Abstract}}%
-		{\vskip 15pt\noindent\textbf{Keywords:}\ \@@keywords%
-	\end{otherlanguage*}
-	\end{paginatitulo}}
+\renewenvironment{abstract}%
+	{%
+		\begin{paginatitulo}%
+		\begin{otherlanguage*}{english}%
+		\pdfbookmark{Abstract}{abstract}%
+		\chapter*{Abstract}%
+	}%
+	{%
+		\vskip 15pt\noindent\textbf{Keywords:}\ \@@keywords%
+		\end{otherlanguage*}%
+		\end{paginatitulo}%
+	}%
 
-\newenvironment{resumo}
-	{\begin{paginatitulo}%
-	\pdfbookmark{Resumo}{resumo}%
-	\chapter*{Resumo}}%
-		{\vskip 15pt\noindent\textbf{Palavras-chave:}\ \@@palavraschave%
-	\end{paginatitulo}}
+\newenvironment{resumo}%
+	{%
+		\begin{paginatitulo}%
+		\pdfbookmark{Resumo}{resumo}%
+		\chapter*{Resumo}%
+	}%
+	{%
+		\vskip 15pt\noindent\textbf{Palavras-chave:}\ \@@palavraschave%
+		\end{paginatitulo}%
+	}%
 
-\newenvironment{dedicatoria}
-	{\begin{paginatitulo}%
-	\pdfbookmark{Dedicat\'oria}{dedication}%
-		\chapter*{Dedicat\'oria}}%
-	{\end{paginatitulo}}
+\newenvironment{dedicatoria}%
+	{
+		\begin{paginatitulo}%
+		\pdfbookmark{Dedicat\'oria}{dedication}%
+		\chapter*{Dedicat\'oria}%
+	}%
+	{\end{paginatitulo}}%
 
 \def\@printfulltitle{%
 	\@ifundefined{@subtitle}{%
@@ -650,24 +658,24 @@
 	}{%
 		\textbf{\Large\@maintitle\\[1ex]\large\@subtitle}%
 	}\par%
-}
+}%
 
-\newcommand\capa{
+\newcommand\capa{%
 	\begin{paginatitulo}%
 	\onehalfspacing%
 		\begin{center}%
-			 \@logo[contorno_preto]
-			 \null\vfill%
-			 \@printfulltitle%
-			 \vfill%
-			 {\large \@author}%
-			 \vfill%
-			{\large \@cidade}\\
+			\@logo[contorno_preto]%
+			\null\vfill%
+			\@printfulltitle%
+			\vfill%
+			{\large \@author}%
+			\vfill%
+			{\large \@cidade}\\%
 			{\large \@ano}%
 		\end{center}%
 	\defaultspacing%
 	\end{paginatitulo}%
-}
+}%
 
 \newcommand\folharosto{%
 	\begin{paginatitulo}%
@@ -682,21 +690,21 @@
 					apresentada como requisito parcial para %
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do\\%
 				\else%
-					apresentada como requisito parcial para\\
+					apresentada como requisito parcial para\\%
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do %
 				\fi%
 				\@nomecurso\ em \@nomeDoPrograma%
 			\else%
-				apresentada como requisito parcial\\
+				apresentada como requisito parcial\\%
 				para conclus\~ao do \@nomecurso%
 			\fi%
 			\vfill%
 			\@sexoorientador\\\@nomeorientador\\%
 			\if@coorientador
-				\vskip 1cm\@sexocoorientador\\\@nomecoorientador
-			\fi
+				\vskip 1cm\@sexocoorientador\\\@nomecoorientador%
+			\fi%
 			\vfill%
-			{\large\@cidade}\\
+			{\large\@cidade}\\%
 			{\large\@ano}%
 		\end{center}%
 		\defaultspacing%
@@ -721,32 +729,40 @@
 				\fi%
 				\@nomecurso\ em \@nomeDoPrograma%
 			\else%
-				apresentada como requisito parcial\\
+				apresentada como requisito parcial\\%
 				para conclus\~ao do \@nomecurso%
 			\fi%
 			\vfill%
-			\@nomeorientador\ (\@sexoorientador)\\
-			\@filiorientador\\[1cm]
+			\@nomeorientador\ (\@sexoorientador)\\%
+			\@filiorientador\\[1cm]%
+			\if@coorientador
+				\@nomecoorientador\ (\@sexocoorientador)\\%
+				\@filicoorientador\\[1cm]
+			\fi%
 			\if@quintomembro%
-				\begin{tabular}{cc}
-					\@nomedois & \@nometres\\
+				\begin{tabular}{cc}%
+					\@nomedois & \@nometres\\%
 					\@filidois & \@filitres\\[1cm]%
 					\@nomequatro & \@nomecinco\\%
 					\@filiquatro & \@filicinco%
-				\end{tabular}\\[1cm]
+				\end{tabular}\\[1cm]%
 			\else%
-				\begin{tabular}{cc}
-					\@nomedois & \@nometres\\
+				\begin{tabular}{cc}%
+					\@nomedois & \@nometres\\%
 					\@filidois & \@filitres%
-				\end{tabular}\\[1cm]
+				\end{tabular}\\[1cm]%
 				\if@quartomembro%
 					\@nomequatro\\%
-					\@filiquatro\\[1cm]
+					\@filiquatro\\[1cm]%
 				\fi%
 			\fi%
-			\@nomecoordenador\\
+			\@nomecoordenador\\%
 			\@sexocoordenador \ do\ %
-			\if@posgraduacao Programa de P\'{o}s-gradua\c{c}\~{a}o em \@nomeDoPrograma\else \@nomecurso\fi%
+			\if@posgraduacao%
+				Programa de P\'{o}s-gradua\c{c}\~{a}o em \@nomeDoPrograma%
+			\else%
+				\@nomecurso%
+			\fi%
 			\vfill%
 			{\large \@cidade, \@dia\ de \@mes\ de \@ano}
 		\end{center}%
@@ -754,13 +770,14 @@
 	\end{paginatitulo}%
 }
 
-%%
-%% --- Processamento de final e início do documento ---
-%%
+%% ------------------------------------------------------------------------------------------
+%% --
+%% -- Processamento de final e início do documento
+%% ------------------------------------------------------------------------------------------
 \AtEndDocument{%
 	\if@PosTextualNaoIncluso\@conteudoPosTextual\fi%
 
-	\addtocounter{page}{-1}%decrementa para depois . . .
+	\addtocounter{page}{-1}% decrementa para depois ...
 	\ifhyperref{%
 		\immediate\write\@mainaux{%
 			\string\newlabel{TotPaginas}{{\arabic{TotPaginas}}{\thepage}{}{page.\thepage}{}}%
@@ -769,84 +786,84 @@
 		\immediate\write\@mainaux{%
 			\string\newlabel{TotPaginas}{{\arabic{TotPaginas}}{\thepage}}%
 		}%
-	}
-	\addtocounter{page}{1}% . . . incrementar de novo
-}
+	}%
+	\addtocounter{page}{1}% ... incrementar de novo
+}%
 
+% define propriedades do PDF e carrega pacotes auxiliares
 \AtBeginDocument{%
-	%define propriedades do PDF e carrega pacotes auxiliares
-	\@ifpackageloaded{hyperref}{
-	\hypersetup{
-			pdftitle=\@title,
-			pdfauthor=\@author,
-			pdfsubject=\@assunto,
-			pdfkeywords=\@palavraschave}
+	\@ifpackageloaded{hyperref}{%
+		\hypersetup{%
+			pdftitle=\@title,%
+			pdfauthor=\@author,%
+			pdfsubject=\@assunto,%
+			pdfkeywords=\@palavraschave%
+		}%
 		\@ifpackageloaded{natbib}{
-			%compatibilidade entre natbib e hyperref
-		\RequirePackage{hypernat}
+			\RequirePackage{hypernat}% compatibilidade entre natbib e hyperref
 		}{}
-		%posiciona melhor os links para captions
-		\RequirePackage[all]{hypcap}
-	}{
-		\RequirePackage{nohyperref} %dummy macros for hyperref
-		\RequirePackage{url} %permite quebra de linha em URLs
-	}
+		\RequirePackage[all]{hypcap}% posiciona melhor os links para captions
+	}{%
+		\RequirePackage{nohyperref}% dummy macros for hyperref
+		\RequirePackage{url}% permite quebra de linha em URLs
+	}%
 
 	%controle do sumario de acordo com o estilo atual,
 	%após hyperref carregado porque ele sobrescreve
 	%o comando \addcontentsline
-	\let\@addcontentsline\addcontentsline
-	\def\@emptystr{empty}
-	\def\@pagestyle#1{
+	\let\@addcontentsline\addcontentsline%
+	\def\@emptystr{empty}%
+	\def\@pagestyle#1{%
 		\let\@styletoset=#1%
 		\pagestyle{\@styletoset}%
 		%se estilo for empty, não adiciona ao TOC
-		\ifx\@styletoset\@emptystr
-			\renewcommand\addcontentsline[3]{\relax}
-		\else
-			\let\addcontentsline\@addcontentsline
-		\fi
-	}
+		\ifx\@styletoset\@emptystr%
+			\renewcommand\addcontentsline[3]{\relax}%
+		\else%
+			\let\addcontentsline\@addcontentsline%
+		\fi%
+	}%
 
 	%traducoes para glossaries.sty
 	\@ifpackageloaded{glossaries}{%
 		\@ifundefined{XeTeXversion}{
 			\addto\captionsbrazil{%
-			\renewcommand*{\glossaryname}{Gloss\'ario}%
-			\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}%
-			\renewcommand*{\entryname}{Entrada}%
-			\renewcommand*{\descriptionname}{Descri\c{c}\~ao}%
-			\renewcommand*{\symbolname}{S\'\imbolo}%
-			\renewcommand*{\pagelistname}{Lista de p\'aginas}%
-			\renewcommand*{\glssymbolsgroupname}{S\'imbolos}%
-			\renewcommand*{\glsnumbersgroupname}{N\'umeros}}
-		}{
+				\renewcommand*{\glossaryname}{Gloss\'ario}%
+				\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}%
+				\renewcommand*{\entryname}{Entrada}%
+				\renewcommand*{\descriptionname}{Descri\c{c}\~ao}%
+				\renewcommand*{\symbolname}{S\'\imbolo}%
+				\renewcommand*{\pagelistname}{Lista de p\'aginas}%
+				\renewcommand*{\glssymbolsgroupname}{S\'imbolos}%
+				\renewcommand*{\glsnumbersgroupname}{N\'umeros}
+			}
+		}{%
 			\addto\captionsbrazil{%
-			\renewcommand*{\glossaryname}{Glossário}%
-			\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}%
-			\renewcommand*{\entryname}{Entrada}%
-			\renewcommand*{\descriptionname}{Descrição}%
-			\renewcommand*{\symbolname}{Símbolo}%
-			\renewcommand*{\pagelistname}{Lista de páginas}%
-			\renewcommand*{\glssymbolsgroupname}{Símbolos}%
-			\renewcommand*{\glsnumbersgroupname}{Números}}
-		}
+				\renewcommand*{\glossaryname}{Glossário}%
+				\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}%
+				\renewcommand*{\entryname}{Entrada}%
+				\renewcommand*{\descriptionname}{Descrição}%
+				\renewcommand*{\symbolname}{Símbolo}%
+				\renewcommand*{\pagelistname}{Lista de páginas}%
+				\renewcommand*{\glssymbolsgroupname}{Símbolos}%
+				\renewcommand*{\glsnumbersgroupname}{Números}
+			}%
+		}%
 	}{}
 
-	\@ifundefined{XeTeXversion}%
-	{%suporte para fonte Adobe Minion Pro - pacote LaTeX
+	\@ifundefined{XeTeXversion}{% suporte para fonte Adobe Minion Pro - pacote LaTeX
 		\@ifpackageloaded{MinionPro}{}{%
-			\newcommand{\figureversion}[1]{\relax}
-		}
+			\newcommand{\figureversion}[1]{\relax}%
+		}%
 		\newenvironment{linfig}{\figureversion{lining}}{\figureversion{text}}%
 		\newenvironment{tabfig}{\figureversion{tabular}}{\figureversion{proportional}}%
 		\newcommand*{\textlinf}[1]{\figureversion{lining}#1\figureversion{text}}%
 		\newcommand*{\texttabf}[1]{\figureversion{tabular}#1\figureversion{proportional}}%
 		\newcommand*{\@tablefigures}{\figureversion{lining,tabular}}%
 	}%
-	{%suporte fontspec - XeTeX
- 		\def\@textlinf{\protect\addfontfeatures{Numbers=Lining}}%
- 		\def\@texttabf{\protect\addfontfeatures{Numbers=Monospaced}}%
+	{%
+		\def\@textlinf{\protect\addfontfeatures{Numbers=Lining}}% suporte fontspec - XeTeX
+		\def\@texttabf{\protect\addfontfeatures{Numbers=Monospaced}}%
 		\newenvironment{linfig}{\bgroup\@textlinf}{\egroup}%
 		\newenvironment{tabfig}{\bgroup\@texttabf}{\egroup}%
 		\newcommand*{\textlinf}[1]{{\@textlinf #1}}%
@@ -855,27 +872,25 @@
 		\newcommand*{\slashedzero}{{\addfontfeature{Numbers={Lining,SlashedZero}}0}}%
 	}%
 
-	\if@baselineskip
-		%para manter o valor inicial
-		\newdimen\@oldbaseline
-
-		%define o espaçamento pelo baselinekip
-		\@oldbaseline=\baselineskip
-		\newcommand{\setstretch}[1]{\setlength{\baselineskip}{#1\@oldbaseline}}
-		\newcommand{\singlespacing}{\setstretch{1}}
-		\newcommand{\onehalfspacing}{\setstretch{1.35}}
-		\newcommand{\doublespacing}{\setstretch{1.7}}
-	\fi
+	\if@baselineskip%
+		\newdimen\@oldbaseline% para manter o valor inicial
+		\@oldbaseline=\baselineskip% define o espaçamento pelo baselinekip
+		\newcommand{\setstretch}[1]{\setlength{\baselineskip}{#1\@oldbaseline}}%
+		\newcommand{\singlespacing}{\setstretch{1}}%
+		\newcommand{\onehalfspacing}{\setstretch{1.35}}%
+		\newcommand{\doublespacing}{\setstretch{1.7}}%
+	\fi%
 
 	\newcommand{\defaultspacing}{%
-		\if@singlespacing\singlespacing%single spacing
-			\else\if@onehalfspacing\onehalfspacing%one and half spacing
-				\else\doublespacing%double spacing
+		\if@singlespacing\singlespacing% single spacing
+			\else\if@onehalfspacing\onehalfspacing% one and half spacing
+				\else\doublespacing% double spacing
 			\fi%
-		\fi}
+		\fi%
+	}%
 	\defaultspacing% chamada inicial
 
-	% Controle de membros da banca
+	% -- Controle de membros da banca
 	\ifx\@nometres\undefined%
 		\ClassError{UnB-EnE}%
 			{A banca deve ter pelo menos 3 membros}%
@@ -888,7 +903,7 @@
 			\else%
 				\ClassError{UnB-EnE}%
 					{A banca deve ter 5 membros}%
-					{Lembre-se que orientador e coorientador ja fazem parte da banca}%%
+					{Lembre-se que orientador e coorientador ja fazem parte da banca}%
 			\fi%
 		\fi%
 	\fi%
@@ -896,14 +911,23 @@
 	\@conteudoPreTextual%
 }
 
+%% ------------------------------------------------------------------------------------------
+%% --
+%% -- Macros/comandos auxiliares 
+%% ------------------------------------------------------------------------------------------
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% Novos Comandos %%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: flexibilizar o path para o diretório, por meio de parâmetro
+%
+%\newcommand{\texpath}[1]{%
+%	\ifx&#1&%
+%		\gdef\@texpath{#1}%
+%	\else%
+%		\gdef\@texpath{exemplos/tex}%
+%	\fi%
+%}%
 
-\newcommand{\unbene}{\texttt{UnB-EnE}}%
-
-\newcommand{\titulo}[1]{\title{#1}}%
+% -- Definição do diretório para os fontes
+\def\@texpath{tex}%
 
 \newcommand{\@erroSeNaoExiste}[1]{%
 	\IfFileExists{#1}{}%
@@ -971,7 +995,7 @@
 	\@IncluirSecao{abstract}%
 	\selectlanguage{brazil}%
 	\selectbiblanguage{brazil}%
-	\@erroSeNaoExiste{exemplos/bibliografia.bib}%
+	\@erroSeNaoExiste{bibliografia.bib}%
 
 	\tableofcontents%
 	\iftotalfigures\listoffigures\fi%
@@ -989,7 +1013,6 @@
 }%
 
 \newcommand{\sigla}[2]{\newacronym{#1}{#1}{#2}}%
-
 \newcommand{\@referencia}[2]{#1~\ref{#2}}%
 \newcommand{\refCap}[1]{\@referencia{Capítulo}{#1}}%
 \newcommand{\refCaps}[2]{\@referencia{Capítulos}{#1}\ a \ref{#2}}%
