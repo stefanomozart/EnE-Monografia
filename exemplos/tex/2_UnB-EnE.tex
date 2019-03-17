@@ -13,12 +13,11 @@
 
 
 Este capítulo descreve a classe \unbene, e demonstra os comandos disponíveis. A última versão foi
-atualizada em 2013 (vide \refAnexo{Anexo1}). A melhor forma de entender o funcionamento é observar
+atualizada em 2019 (vide \refAnexo{Anexo1}). A melhor forma de entender o funcionamento é observar
 o arquivo principal deste documento (\texttt{monografia.tex}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Gerando o PDF}
-
 Para gerar corretamente as referências cruzadas, é necessário processar os arquivos mais de uma vez
 com a seguinte sequência de comandos (supondo que o arquivo principal seja \texttt{monografia.tex}).
 
@@ -42,8 +41,8 @@ disponíveis são:
 \begin{description}
 	\item[eletrica] Bacharelado em Engenharia Elétrica;
 	\item[redes] Bacharelado em Engenharia de Redes de Comunicação;
-	\item[eletrica] Bacharelado em Engenharia Mecatrônica;
-	\item[eletrica] Bacharelado em Engenharia de Computação;
+	\item[mecatronica] Bacharelado em Engenharia Mecatrônica;
+	\item[computacao] Bacharelado em Engenharia de Computação;
 	\item[mestrado, ppgee] Mestrado em Engenharia Elétrica
 	\item[doutorado, ppgee] Doutorado em Engenharia Elétrica
 	\item[mestrado, pgea] Mestrado em Engenharia de Sistemas Eletrônicos e de Automação;
@@ -67,20 +66,17 @@ seguintes definições:
 
 \begin{verbatim}
 \orientador{\prof \dr Adi Shamir}{Weizmann Institute}%
-\coorientador{\prof \dr Ivan Damg\aard}{Aarhus University}%
+\coorientador{\prof \dr Ivan Damg\a{a}rd}{Aarhus University}%
 \coordenador[a]{\prof[a] \dr[a] Alexandra Boldyreva}{Georgia Tech}%
-\diamesano{13}{março}{2019}%
-
 \membrobanca{\prof \dr Yehuda Lindell}{Bar Ilan University}%
 \membrobanca{\dr Silvio Micali}{Massachusetts Institute of Technology}%
-
 \autor{Stefano M. P. C.}{Souza}%
+\diamesano{13}{março}{2019}%
 \end{verbatim}
 
 Sobre o texto, definiu-se:
 \begin{verbatim}
 \titulo{UnB-EnE: Uma classe em LaTeX para textos do Departamento de Engenharia Elétrica}%
-
 \palavraschave{LaTeX, metodologia científica}%
 \keywords{LaTeX, scientific method}%
 \end{verbatim}
@@ -92,7 +88,7 @@ indexação e busca de documentos que tratam os mesmos temas.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Arquivos}
-Os seguintes arquivos são sugeridos:
+Os seguintes arquivos são requeridos:
 \begin{description}%
 	\item[tex/abstract.tex] Contém o \emph{abstract} do texto;%
 	\item[tex/agradecimentos.tex] Contém os agradecimentos do autor;%
@@ -105,8 +101,8 @@ Os seguintes arquivos são sugeridos:
 
 Os alunos dos Programas de Pós-Graduação da Universidade de Brasília devem incluir a ficha 
 catalográfica em seus documentos, gerada pela \acrfull{BCE}. Neste caso, o aluno deve substituir o 
-arquivo PDF \textbf{doc/BDM.pdf} pelo fornecido pela \acrshort{BCE}. \emph{Atenção}, para que o 
-arquivo seja incluido automaticamente pela classe, o nome deve ser \emph{obrigatoriamente} 
+arquivo PDF \textbf{anexos/BDM.pdf} pelo fornecido pela \acrshort{BCE}. \textbf{Atenção!} Para que
+o arquivo seja incluido automaticamente pela classe, o nome deve ser \emph{obrigatoriamente} 
 \textbf{BDM.pdf}.%
 
 Demais arquivos não são inseridos automaticamente, mas a classe oferece comandos para inclusão,
@@ -140,18 +136,17 @@ vistos até agora, o documento seria:
 
 \begin{verbatim}
 \begin{document}%
-\capitulo{tex/1_Introducao}{Introdução}% inclui o arquivo \texttt{./tex/1_Introducao.tex}
-\capitulo{tex/2_UnB-EnE}{A Classe \unbene}% inclui o arquivo \texttt{./tex/2_UnB-EnE.tex}
+\capitulo{1_Introducao}{Introdução}% inclui o arquivo ./tex/1_Introducao.tex
+\capitulo{2_UnB-EnE}{A Classe \unbene}% inclui o arquivo ./tex/2_UnB-EnE.tex
 \end{document}%
 \end{verbatim}
 
 Para incluir um terceiro capítulo neste texto, cujo conteúdo trata de trabalhos conclusão de curso,
 basta criar o arquivo \texttt{tex/3\_TCC.tex} e adicioná-lo com o comando descrito.
 
-No caso de apêndices ou anexos necessários, o texto de cada um deve estar em seu próprio arquivo, 
-preferencialmente dentro no mesmo diretório que os capítulos (e.g. \texttt{tex/}). Para facilitar
-as referências cruzadas, estes devem ser inclusos com os seguintes comandos
-(respectivamente):
+Para incluir apêndices e anexos, basta criar os respectivos arquivos tex dentro do mesmo diretório
+em que se encontram os capítulos (e.g. \texttt{tex/}). Para facilitar as referências cruzadas,
+estes devem ser inclusos com os seguintes comandos (respectivamente):
 \begin{verbatim}
 \apendice{arquivo}{título}%
 \anexo{arquivo}{título}%
@@ -162,19 +157,19 @@ documento ``completo'' seria: %
 
 \begin{verbatim}
 \begin{document}%
-\capitulo{tex/1_Introducao}{Introdução}%
-\capitulo{tex/2_UnB-CIC}{A Classe \unbcic}%
-\capitulo{tex/3_TCC}{Trabalho de Conclusão de Curso}%
+	\capitulo{1_Introducao}{Introdução}%
+	\capitulo{2_UnB-EnE}{A Classe \unbene}%
+	\capitulo{3_TCC}{Trabalho de Conclusão de Curso}%
 
-\apendice{anexos/Apendice_Fichamento}{Fichamento de Artigo Científico}%
-\anexo{anexos/Anexo1}{Parte da Documentação Original}%
+	\apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
+	\anexo{Anexo1}{Parte da Documentação Original}%
 \end{document}%
 \end{verbatim}
 
 Usando estes comandos, o rótulo de cada capítulo/apêndice/anexo é criado automaticamente a partir 
 do nome do arquivo para posterior referência cruzada. Por exemplo, este capítulo pode ser 
 referenciado com o comando \texCommand{ref\{2\_UnB-EnE\}} (cujo resultado é: \ref{2_UnB-EnE}), mas 
-a classe oferece opções mais interessantes. Os comandos para referenciar çapítulos são:
+a classe oferece opções mais interessantes. Os comandos para referenciar capítulos são:
 
 \begin{verbatim}
 \refCap{referência}%
@@ -200,7 +195,7 @@ Considerando \refCap{1_Introducao} e também o \refCap{2_UnB-EnE}, é possível 
 \end{verbatim}
 
 Estes comandos visam garantir um padrão uniforme para referenciamento dos capítulos, mas nada
-impede o uso dos comandos padrão do \LaTeX\.
+impede o uso dos comandos padrão do \LaTeX.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Figuras}
@@ -228,10 +223,10 @@ Os 5 argumentos são:
 Por exemplo, a \refFig{unbPB}, inserida com o seguinte comando:
 
 \begin{verbatim}
-\figura[!h]{img/contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
+\figura[!h]{contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
 \end{verbatim}
 
-\figura[!h]{img/contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
+\figura[!h]{contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
 
 Os comandos para referenciar figuras são:
 
@@ -283,8 +278,8 @@ referência a elas com um padrão uniforme, e nada impede o uso dos comandos pad
 
 \figura{img/positivo_cor}{Outra marca colorida}{unb2}{width=0.25\textwidth}%
 
-Note que o diretório {./img}, bem como os arquivos ./img/positivo_cor.pdf e 
-./img/contorno_preto.pdf são requeridos pela classe para a geração da capa e das folhas
+Note que o diretório \texttt{{.}/img}, bem como os arquivos \texttt{./img/positivo\_cor.pdf} e 
+\texttt{./img/contorno\_preto.pdf} são requeridos pela classe para a geração da capa e das folhas
 de rosto.
 
 
@@ -460,7 +455,7 @@ Onde os argumentos são:
 Por exemplo:
 
 \begin{verbatim}
-\sigla{CIC}{Departamento de Ciência da Computação}%
+\sigla{EnE}{Departamento de Engenharia Elétrica}%
 \end{verbatim}
 
 A inserção de uma sigla/abreviatura no texto é simples, e pode ser feita de três
@@ -468,13 +463,13 @@ formas diferentes:
 
 \begin{minipage}[t]{.3\textwidth}%
 	\begin{verbatim}
-	\acrshort{CIC}
-	\acrlong{CIC}
-	\acrfull{CIC}
+	\acrshort{EnE}
+	\acrlong{EnE}
+	\acrfull{EnE}
 	\end{verbatim}
 \end{minipage}%
 \begin{minipage}[t]{.6\textwidth}%
-	\acrshort{CIC}\\
-	\acrlong{CIC}\\
-	\acrfull{CIC}
+	\acrshort{EnE}\\
+	\acrlong{EnE}\\
+	\acrfull{EnE}
 \end{minipage}%
