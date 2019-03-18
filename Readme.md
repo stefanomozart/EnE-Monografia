@@ -17,6 +17,11 @@ Assume-se que há uma instalação correta do [TeX Live](https://www.tug.org/tex
 
 ## Uso ##
 
+### Overleaf / ShareLatex ###
+O arquivo monografia.tex está disponível como template no Overleaf. Para utilizá-lo, basta acessar a URL [https://www.overleaf.com/latex/templates/ene-monografia/qdpdszqskvrm](https://www.overleaf.com/latex/templates/ene-monografia/qdpdszqskvrm) e clicar em "Open as Template"
+
+### Compilando localmente ###
+
 A criação de um arquivo PDF é simples, basta processar o arquivo principal (`monografia.tex`) com o programa `pdflatex`. Isso pode ser feito pela linha de comando:
 
 ```bash
