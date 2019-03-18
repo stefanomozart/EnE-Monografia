@@ -12,7 +12,7 @@ Esta obra está licenciado com uma Licença [Creative Commons Atribuição-Compa
 
 ## Instalação ##
 
-Assume-se que há uma instalação correta do [TeX Live](https://www.tug.org/texlive/). Para qualquer dos sistemas operacionais mais comuns (Unix/Mac OS/Windows), basta copiar todos os arquivos disponíveis. A forma mais simples de fazer isso é baixar o arquivo [ZIP](https://github.com/stefanomozart/EnE-Monografia/archive/master.zip) e descompactá-lo em sua área de trabalho.
+Assume-se que o usuário utilizará um serviço edição on-line, com o ambiente pré-configurado (como o [OverLeaf](https://www.overleaf.com) ou [Authorea](https://www.authorea.com/online-latex-editor). Caso deseje compilar o documento localmente, é necessário ter uma instalação correta do [TeX Live](https://www.tug.org/texlive/). Para qualquer dos sistemas operacionais mais comuns (Unix/Mac OS/Windows), basta copiar todos os arquivos disponíveis. A forma mais simples de fazer isso é baixar o arquivo [ZIP](https://github.com/stefanomozart/EnE-Monografia/archive/master.zip) e descompactá-lo em sua área de trabalho.
 
 
 ## Uso ##
@@ -64,8 +64,6 @@ A versão disponível aqui apresenta um exemplo completo de texto usando a class
 
 
 ### Não consigo gerar o texto! ###
-
-Uma solução popular ultimamente tem sido usar uma ferramenta online como o [ShareLaTeX](http://pt.sharelatex.com).
 
 Caso queira usar o seu próprio sistema, veja cuidadosamente as seções de instalação e uso acima. Se a sua configuração está conforme e ainda assim não funciona, geralmente há algum tipo de mensagem descrevendo o problema; tente buscar soluções no [Google](https://www.google.com) ou em sítios especializados como o [StackExchange](http://tex.stackexchange.com).
 
